@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'ZHAO YI | Full-Stack Design Engineer',
+  title: 'YUAN SUYANG | 智能交互设计 & 网络安全',
   description:
-    '设计驱动创新，工程实现价值，安全守护未来。全栈设计工程师个人网站。',
+    '袁苏洋 — 本科大三在读，智能交互设计专业 & 网络与信息安全微专业，发明专利一项。',
 };
 
 export default function RootLayout({

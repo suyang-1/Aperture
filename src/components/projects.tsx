@@ -5,37 +5,37 @@ import { ArrowUpRight } from 'lucide-react';
 
 const projects = [
   {
-    title: 'AIoT 智能健康终端系统',
-    tag: 'AI × HARDWARE',
+    title: '发明专利项目',
+    tag: 'PATENT · INNOVATION',
     description:
-      '面向智能健康场景的物联网终端解决方案，融合AI算法与嵌入式系统，实现实时健康监测与预警。',
+      '持有一项发明专利，将智能交互设计与安全防护技术相融合的创新成果。',
     gradient: 'from-blue-900/40 to-cyan-900/20',
     iconBg: 'bg-blue-500/10',
     iconBorder: 'border-blue-500/20',
   },
   {
-    title: '安全态势感知平台',
-    tag: 'DATA VISUALIZATION',
+    title: '智能交互设计作品',
+    tag: 'INTERACTION DESIGN',
     description:
-      '多维安全数据可视化分析平台，实时监控网络态势，智能识别威胁，辅助安全决策。',
+      '基于用户研究与交互原型方法，打造直觉化的智能交互体验方案。',
     gradient: 'from-cyan-900/40 to-teal-900/20',
     iconBg: 'bg-cyan-500/10',
     iconBorder: 'border-cyan-500/20',
   },
   {
-    title: '智能漏洞扫描与修复系统',
-    tag: 'WEB SECURITY',
+    title: '网络安全研究实践',
+    tag: 'CYBER SECURITY',
     description:
-      '自动化Web安全检测与修复平台，集成漏洞扫描、风险评估与智能修复建议。',
+      '网络与信息安全微专业课程实践，涵盖渗透测试与安全评估方法。',
     gradient: 'from-emerald-900/40 to-green-900/20',
     iconBg: 'bg-emerald-500/10',
     iconBorder: 'border-emerald-500/20',
   },
   {
-    title: '校园互联服务平台',
-    tag: 'MOBILE APP',
+    title: '跨学科融合探索',
+    tag: 'DESIGN × SECURITY',
     description:
-      '连接校园生活的移动端服务平台，整合课程、社交、生活服务，打造一站式校园体验。',
+      '探索交互设计与信息安全的交叉领域，构建安全可信的用户体验。',
     gradient: 'from-sky-900/40 to-blue-900/20',
     iconBg: 'bg-sky-500/10',
     iconBorder: 'border-sky-500/20',

@@ -56,20 +56,19 @@ export default function Hero() {
 
             {/* Main Title */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-              Full-Stack
+              智能交互
               <br />
-              Design
+              设计
               <br />
-              <span className="text-glow text-cyber-blue">Engineer</span>
+              <span className="text-glow text-cyber-blue">& 信息安全</span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-slate-400 text-sm sm:text-base leading-relaxed max-w-md">
-              设计驱动创新，工程实现价值，安全守护未来。
+              袁苏洋 — 本科大三在读，智能交互设计专业 & 网络与信息安全微专业，持有发明专利一项。
               <br />
               <span className="text-slate-500 text-xs">
-                Design-driven innovation, engineering implements value, security
-                guards the future.
+                Undergraduate junior majoring in Intelligent Interaction Design & Network and Information Security, with one invention patent.
               </span>
             </p>
 
@@ -117,9 +116,9 @@ export default function Hero() {
               {/* Center element */}
               <div className="absolute inset-20 rounded-full bg-gradient-to-br from-cyber-blue/10 to-transparent flex items-center justify-center glow-blue">
                 <div className="text-center">
-                  <div className="text-5xl font-black text-cyber-blue/80 text-glow">Z</div>
+                  <div className="text-5xl font-black text-cyber-blue/80 text-glow">Y</div>
                   <div className="text-[8px] tracking-[0.3em] text-slate-500 mt-1">
-                    FULL STACK
+                    YUAN SUYANG
                   </div>
                 </div>
               </div>

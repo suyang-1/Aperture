@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Copyright */}
           <p className="text-slate-600 text-xs">
-            &copy; 2026 ZHAO YI. All rights reserved.
+            &copy; 2026 YUAN SUYANG. All rights reserved.
           </p>
 
           {/* Tagline */}

@@ -11,39 +11,33 @@ const skills = [
   'Figma',
   'React',
   'TypeScript',
-  'Next.js',
   'Python',
-  'Node.js',
-  'Docker',
-  'AWS',
+  '交互设计',
+  '网络安全',
+  '渗透测试',
+  'UI/UX',
   'More',
 ];
 
 const experiences = [
   {
-    year: '2026',
-    title: '全栈设计工程师',
-    company: '独立工作室',
-    description: '独立承接全栈设计与开发项目',
+    year: '至今',
+    title: '本科大三在读',
+    company: '智能交互设计专业',
+    description: '主修智能交互设计，辅修网络与信息安全微专业',
   },
   {
-    year: '2025',
-    title: '智能交互设计师',
-    company: '科技公司',
-    description: '主导AIoT产品交互设计与用户体验优化',
-  },
-  {
-    year: '2024',
-    title: '网络安全研究员',
-    company: '安全实验室',
-    description: 'Web安全漏洞研究与渗透测试',
+    year: '成果',
+    title: '发明专利一项',
+    company: '知识产权',
+    description: '持有一项已授权/申请中的发明专利',
   },
 ];
 
 const contacts = [
-  { icon: Mail, label: 'Email', value: 'hello@zhaoyi.dev' },
-  { icon: MessageCircle, label: 'WeChat', value: 'zhaoyi_dev' },
-  { icon: MapPin, label: 'Location', value: 'Shanghai, China' },
+  { icon: Mail, label: 'Email', value: 'yuansuyang@example.com' },
+  { icon: MessageCircle, label: 'WeChat', value: '待补充' },
+  { icon: MapPin, label: 'Location', value: 'China' },
 ];
 
 export default function About() {
@@ -95,11 +89,11 @@ export default function About() {
             <div className="flex items-start gap-4 mb-4">
               {/* Avatar placeholder */}
               <div className="w-14 h-14 rounded-full bg-gradient-to-br from-cyber-blue/20 to-cyan-900/30 border border-cyber-blue/30 flex items-center justify-center flex-shrink-0">
-                <span className="text-cyber-blue text-lg font-bold">Z</span>
+                <span className="text-cyber-blue text-lg font-bold">Y</span>
               </div>
               <div>
                 <p className="text-slate-300 text-xs leading-relaxed">
-                  全栈设计工程师，专注于智能交互设计、工程开发实现与网络安全领域。致力于将设计思维、工程能力与安全意识融合，创造有价值的产品体验。
+                  袁苏洋，本科大三在读，主修智能交互设计专业，辅修网络与信息安全微专业。持有发明专利一项，致力于将交互设计思维与信息安全意识相融合，探索安全可信的智能交互体验。
                 </p>
               </div>
             </div>

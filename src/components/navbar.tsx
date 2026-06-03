@@ -45,14 +45,14 @@ export default function Navbar() {
           {/* Logo */}
           <a href="#home" className="flex items-center gap-3 group">
             <div className="w-8 h-8 rounded-md border border-cyber-blue/50 flex items-center justify-center bg-cyber-blue/10 group-hover:bg-cyber-blue/20 transition-colors">
-              <span className="text-cyber-blue font-bold text-sm">Z</span>
+              <span className="text-cyber-blue font-bold text-sm">Y</span>
             </div>
             <div className="flex flex-col">
               <span className="text-white font-bold text-sm tracking-wider leading-tight">
-                ZHAO YI
+                YUAN SUYANG
               </span>
               <span className="text-slate-500 text-[10px] tracking-widest">
-                DESIGN ENGINEER
+                INTERACTION & SECURITY
               </span>
             </div>
           </a>

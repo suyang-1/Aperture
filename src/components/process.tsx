@@ -155,19 +155,19 @@ export default function Process() {
             <div className="relative p-6 bg-[#0d1117] border border-cyber-blue-dim rounded-xl">
               <Quote className="w-8 h-8 text-cyber-blue/20 mb-4" />
               <p className="text-slate-300 text-sm leading-relaxed mb-4">
-                我关注的不仅是体验，更是系统的安全与可靠。
+                设计不止于体验，更关乎安全与信任。
               </p>
               <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                每一个设计决策背后，都需要工程思维的支撑与安全底线的守护。
+                在交互设计的每个环节融入安全思维，让每一次人机交互都经得起信任的检验。
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-cyber-blue/10 border border-cyber-blue/30 flex items-center justify-center">
-                  <span className="text-cyber-blue text-xs font-bold">Z</span>
+                  <span className="text-cyber-blue text-xs font-bold">Y</span>
                 </div>
                 <div>
-                  <p className="text-white text-xs font-semibold">ZHAO YI</p>
+                  <p className="text-white text-xs font-semibold">YUAN SUYANG</p>
                   <p className="text-slate-600 text-[10px]">
-                    Full-Stack Design Engineer
+                    交互设计 & 信息安全
                   </p>
                 </div>
               </div>
