@@ -35,9 +35,9 @@ const experiences = [
 ];
 
 const contacts = [
-  { icon: Mail, label: 'Email', value: 'yuansuyang@example.com' },
-  { icon: MessageCircle, label: 'WeChat', value: '待补充' },
-  { icon: MapPin, label: 'Location', value: 'China' },
+  { icon: Mail, label: 'Email', value: 'suyang2027@126.com' },
+  { icon: MessageCircle, label: 'WeChat', value: 'MrYSY2005' },
+  { icon: MapPin, label: 'Location', value: '天津市' },
 ];
 
 export default function About() {
@@ -182,26 +182,23 @@ export default function About() {
               })}
             </div>
 
-            {/* QR Code placeholder */}
+            {/* WeChat QR Code */}
             <div className="mt-6 flex items-center gap-4">
-              <div className="w-20 h-20 rounded-lg bg-[#131a24] border border-cyber-blue-dim flex items-center justify-center">
-                <div className="grid grid-cols-3 gap-0.5">
-                  {[1,0,1,1,1,0,0,1,1].map((v, i) => (
-                    <div
-                      key={i}
-                      className={`w-2 h-2 rounded-[1px] ${
-                        v ? 'bg-cyber-blue/30' : 'bg-transparent'
-                      }`}
-                    />
-                  ))}
-                </div>
+              <div className="w-20 h-20 rounded-lg overflow-hidden border border-cyber-blue-dim flex-shrink-0">
+                <img
+                  src="/wechat-qr.jpg"
+                  alt="微信二维码"
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div>
                 <p className="text-slate-500 text-[10px] tracking-wider">
                   扫码添加微信
                 </p>
                 <p className="text-slate-600 text-[10px] mt-1">
-                  Scan to connect
+                  WeChat: MrYSY2005
                 </p>
               </div>
             </div>
