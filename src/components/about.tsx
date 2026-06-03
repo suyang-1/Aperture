@@ -8,6 +8,9 @@ import {
   Award,
   Mic,
   GraduationCap,
+  Users,
+  Trophy,
+  ShieldCheck,
 } from 'lucide-react';
 
 const skills = [
@@ -20,6 +23,8 @@ const skills = [
   'UI/UX',
   '英语演讲',
   '主持',
+  '创新创业',
+  '社团管理',
   'More',
 ];
 
@@ -61,6 +66,36 @@ const campusTimeline = [
         title: '主持2024届毕业生晚会',
         description: '6月 · 数智传媒与设计艺术学院"艺起向未来"',
         icon: Mic,
+      },
+    ],
+  },
+  {
+    year: '2025',
+    events: [
+      {
+        title: '"知网杯"数字素养大赛双项三等奖',
+        description: '7月 · 第三届天津高校数字素养大赛 · 个人三等奖 + 团队三等奖',
+        icon: Trophy,
+      },
+      {
+        title: '中国国际大学生创新大赛天津赛区铜奖',
+        description: '7月 · 第一负责人获铜奖一项，成员身份获铜奖一项',
+        icon: Award,
+      },
+      {
+        title: '担任创业实践协会社团主席',
+        description: '9月 · 天津仁爱学院',
+        icon: Users,
+      },
+      {
+        title: '担任智交互产教融合创新实验室学生负责人',
+        description: '9月 · 数智传媒与设计艺术学院',
+        icon: GraduationCap,
+      },
+      {
+        title: '加入网络与信息安全微专业',
+        description: '9月 · 辅修',
+        icon: ShieldCheck,
       },
     ],
   },
@@ -125,12 +160,12 @@ export default function About() {
               <div>
                 <p className="text-white text-xs font-semibold">袁苏洋</p>
                 <p className="text-cyber-blue/60 text-[10px] mt-0.5">
-                  天津仁爱学院 · 本科大三在读
+                  天津仁爱学院 · 大三在读 · 智能交互设计
                 </p>
               </div>
             </div>
             <p className="text-slate-300 text-xs leading-relaxed mb-3">
-              主修智能交互设计专业，辅修网络与信息安全微专业。持有发明专利一项，致力于将交互设计思维与信息安全意识相融合，探索安全可信的智能交互体验。
+              天津仁爱学院大三在读，主修智能交互设计专业，2025年加入网络与信息安全微专业。持有发明专利一项，担任创业实践协会社团主席及智交互产教融合创新实验室学生负责人。致力于将交互设计思维与信息安全意识相融合，探索安全可信的智能交互体验。
             </p>
 
             {/* Highlight badges */}
@@ -142,6 +177,10 @@ export default function About() {
               <span className="inline-flex items-center gap-1 px-2 py-1 text-[10px] tracking-wider text-green-400 bg-green-400/10 border border-green-400/20 rounded-full">
                 <Award className="w-3 h-3" />
                 发明专利一项
+              </span>
+              <span className="inline-flex items-center gap-1 px-2 py-1 text-[10px] tracking-wider text-amber-400 bg-amber-400/10 border border-amber-400/20 rounded-full">
+                <Users className="w-3 h-3" />
+                社团主席
               </span>
             </div>
 
