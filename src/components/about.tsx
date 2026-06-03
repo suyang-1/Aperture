@@ -5,6 +5,9 @@ import {
   Mail,
   MessageCircle,
   MapPin,
+  Award,
+  Mic,
+  GraduationCap,
 } from 'lucide-react';
 
 const skills = [
@@ -14,23 +17,52 @@ const skills = [
   'Python',
   '交互设计',
   '网络安全',
-  '渗透测试',
   'UI/UX',
+  '英语演讲',
+  '主持',
   'More',
 ];
 
-const experiences = [
+const campusTimeline = [
   {
-    year: '至今',
-    title: '本科大三在读',
-    company: '智能交互设计专业',
-    description: '主修智能交互设计，辅修网络与信息安全微专业',
+    year: '2023',
+    events: [
+      {
+        title: '入读天津仁爱学院',
+        description: '智能交互设计专业',
+        icon: GraduationCap,
+      },
+      {
+        title: '军训优秀学生',
+        description: '9月 · 校级荣誉',
+        icon: Award,
+      },
+      {
+        title: '英语演讲大赛校级三等奖',
+        description: '10月 · 外研社·国才杯"理解当代中国"',
+        icon: Mic,
+      },
+      {
+        title: '主持首届大学生职业规划大赛',
+        description: '12月 · 天津仁爱学院',
+        icon: Mic,
+      },
+    ],
   },
   {
-    year: '成果',
-    title: '发明专利一项',
-    company: '知识产权',
-    description: '持有一项已授权/申请中的发明专利',
+    year: '2024',
+    events: [
+      {
+        title: '英语文化节参与及获奖',
+        description: '5月 · 朗诵《Youth》，朗读赛道决赛校级三等奖',
+        icon: Award,
+      },
+      {
+        title: '主持2024届毕业生晚会',
+        description: '6月 · 数智传媒与设计艺术学院"艺起向未来"',
+        icon: Mic,
+      },
+    ],
   },
 ];
 
@@ -51,7 +83,7 @@ export default function About() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.05 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -87,23 +119,38 @@ export default function About() {
               ABOUT ME
             </h3>
             <div className="flex items-start gap-4 mb-4">
-              {/* Avatar placeholder */}
               <div className="w-14 h-14 rounded-full bg-gradient-to-br from-cyber-blue/20 to-cyan-900/30 border border-cyber-blue/30 flex items-center justify-center flex-shrink-0">
                 <span className="text-cyber-blue text-lg font-bold">Y</span>
               </div>
               <div>
-                <p className="text-slate-300 text-xs leading-relaxed">
-                  袁苏洋，本科大三在读，主修智能交互设计专业，辅修网络与信息安全微专业。持有发明专利一项，致力于将交互设计思维与信息安全意识相融合，探索安全可信的智能交互体验。
+                <p className="text-white text-xs font-semibold">袁苏洋</p>
+                <p className="text-cyber-blue/60 text-[10px] mt-0.5">
+                  天津仁爱学院 · 本科大三在读
                 </p>
               </div>
             </div>
+            <p className="text-slate-300 text-xs leading-relaxed mb-3">
+              主修智能交互设计专业，辅修网络与信息安全微专业。持有发明专利一项，致力于将交互设计思维与信息安全意识相融合，探索安全可信的智能交互体验。
+            </p>
+
+            {/* Highlight badges */}
+            <div className="flex flex-wrap gap-2 mb-4">
+              <span className="inline-flex items-center gap-1 px-2 py-1 text-[10px] tracking-wider text-cyber-blue bg-cyber-blue/10 border border-cyber-blue/20 rounded-full">
+                <GraduationCap className="w-3 h-3" />
+                智能交互设计
+              </span>
+              <span className="inline-flex items-center gap-1 px-2 py-1 text-[10px] tracking-wider text-green-400 bg-green-400/10 border border-green-400/20 rounded-full">
+                <Award className="w-3 h-3" />
+                发明专利一项
+              </span>
+            </div>
 
             {/* Skills */}
-            <div className="flex flex-wrap gap-2 mt-4">
+            <div className="flex flex-wrap gap-1.5">
               {skills.map((skill) => (
                 <span
                   key={skill}
-                  className="px-3 py-1 text-[10px] tracking-wider text-slate-400 bg-[#131a24] border border-cyber-blue-dim rounded-full hover:border-cyber-blue/40 hover:text-cyber-blue transition-colors cursor-default"
+                  className="px-2.5 py-0.5 text-[10px] tracking-wider text-slate-400 bg-[#131a24] border border-cyber-blue-dim rounded-full hover:border-cyber-blue/40 hover:text-cyber-blue transition-colors cursor-default"
                 >
                   {skill}
                 </span>
@@ -111,7 +158,7 @@ export default function About() {
             </div>
           </div>
 
-          {/* Experience */}
+          {/* Campus Experience */}
           <div
             className={`p-6 bg-[#0d1117] border border-cyber-blue-dim rounded-xl transition-all duration-700 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
@@ -119,33 +166,51 @@ export default function About() {
             style={{ transitionDelay: '100ms' }}
           >
             <h3 className="text-white font-bold text-sm tracking-wider mb-6">
-              EXPERIENCE
+              CAMPUS EXPERIENCE
             </h3>
             <div className="relative">
               {/* Timeline line */}
               <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-cyber-blue/50 via-cyber-blue/20 to-transparent" />
 
-              <div className="space-y-6">
-                {experiences.map((exp, i) => (
-                  <div key={exp.year} className="relative pl-6">
-                    {/* Timeline dot */}
-                    <div className="absolute left-0 top-1.5 w-[15px] h-[15px] rounded-full border-2 border-cyber-blue/40 bg-[#0d1117] flex items-center justify-center">
-                      <div
-                        className={`w-[5px] h-[5px] rounded-full ${
-                          i === 0 ? 'bg-cyber-blue' : 'bg-cyber-blue/30'
-                        }`}
-                      />
+              <div className="space-y-5">
+                {campusTimeline.map((group, gi) => (
+                  <div key={group.year}>
+                    {/* Year header */}
+                    <div className="relative pl-6 mb-3">
+                      <div className="absolute left-0 top-0.5 w-[15px] h-[15px] rounded-full border-2 border-cyber-blue bg-[#0d1117] flex items-center justify-center">
+                        <div className="w-[5px] h-[5px] rounded-full bg-cyber-blue" />
+                      </div>
+                      <span className="text-cyber-blue text-xs font-bold font-mono tracking-wider">
+                        {group.year}
+                      </span>
                     </div>
-                    <span className="text-cyber-blue/60 text-[10px] font-mono">
-                      {exp.year}
-                    </span>
-                    <h4 className="text-white text-xs font-semibold mt-1">
-                      {exp.title}
-                    </h4>
-                    <p className="text-slate-500 text-[10px]">{exp.company}</p>
-                    <p className="text-slate-600 text-[11px] mt-1">
-                      {exp.description}
-                    </p>
+
+                    {/* Events */}
+                    <div className="space-y-3 ml-6 border-l border-cyber-blue/10 pl-4">
+                      {group.events.map((event, ei) => {
+                        const Icon = event.icon;
+                        return (
+                          <div key={`${group.year}-${ei}`} className="relative">
+                            {/* Sub-dot */}
+                            <div className="absolute -left-[21px] top-1 w-[7px] h-[7px] rounded-full border border-cyber-blue/40 bg-[#0d1117]" />
+
+                            <div className="flex items-start gap-2">
+                              <div className="w-6 h-6 rounded-md bg-cyber-blue/10 border border-cyber-blue/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <Icon className="w-3 h-3 text-cyber-blue/60" />
+                              </div>
+                              <div>
+                                <h4 className="text-white text-[11px] font-semibold leading-tight">
+                                  {event.title}
+                                </h4>
+                                <p className="text-slate-500 text-[10px] mt-0.5 leading-relaxed">
+                                  {event.description}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -184,7 +249,7 @@ export default function About() {
 
             {/* WeChat QR Code */}
             <div className="mt-6 flex items-center gap-4">
-              <div className="w-20 h-20 rounded-lg overflow-hidden border border-cyber-blue-dim flex-shrink-0">
+              <div className="w-20 h-20 rounded-lg overflow-hidden border border-cyber-blue-dim flex-shrink-0 bg-white">
                 <img
                   src="/wechat-qr.jpg"
                   alt="微信二维码"
