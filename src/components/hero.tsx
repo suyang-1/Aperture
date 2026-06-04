@@ -1,32 +1,43 @@
 'use client';
 
 import { ArrowRight, ArrowDown } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import { useParallax } from '@/hooks/use-parallax';
 
 const floatingCards = [
-  { title: 'INTERACTION DESIGN', top: '8%', left: '60%', delay: '0s' },
-  { title: 'DATA VISUALIZATION', top: '55%', left: '75%', delay: '1s' },
-  { title: 'CYBER SECURITY', top: '70%', left: '50%', delay: '0.5s' },
-  { title: 'SYSTEM ARCHITECTURE', top: '25%', left: '85%', delay: '1.5s' },
+  { title: 'INTERACTION DESIGN', top: '8%', left: '60%', delay: '0s', depth: 0.3 },
+  { title: 'DATA VISUALIZATION', top: '55%', left: '75%', delay: '1s', depth: 0.5 },
+  { title: 'CYBER SECURITY', top: '70%', left: '50%', delay: '0.5s', depth: 0.2 },
+  { title: 'SYSTEM ARCHITECTURE', top: '25%', left: '85%', delay: '1.5s', depth: 0.4 },
 ];
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
+  const [mascotHovered, setMascotHovered] = useState(false);
+  const parallax = useParallax({ intensity: 0.02 });
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  const handleMascotEnter = useCallback(() => setMascotHovered(true), []);
+  const handleMascotLeave = useCallback(() => setMascotHovered(false), []);
+
   return (
     <section
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden bg-stars bg-grid"
+      onMouseMove={parallax.onMouseMove}
+      onMouseLeave={parallax.onMouseLeave}
     >
       {/* Background gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#06080f] via-transparent to-[#06080f] pointer-events-none" />
 
-      {/* Decorative blue orb */}
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-cyber-blue/5 rounded-full blur-3xl pointer-events-none" />
+      {/* Decorative blue orb with parallax */}
+      <div
+        className="absolute top-1/4 right-1/4 w-96 h-96 bg-cyber-blue/5 rounded-full blur-3xl pointer-events-none transition-transform duration-300 ease-out"
+        style={{ transform: parallax.offset(0.3) }}
+      />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-24 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -76,14 +87,14 @@ export default function Hero() {
             <div className="flex flex-wrap gap-4">
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-cyber-blue text-[#06080f] font-semibold text-sm rounded-lg hover:bg-cyan-300 transition-all duration-200 glow-blue hover:glow-blue-strong"
+                className="btn-elastic inline-flex items-center gap-2 px-6 py-3 bg-cyber-blue text-[#06080f] font-semibold text-sm rounded-lg hover:bg-cyan-300 transition-all duration-200 glow-blue hover:glow-blue-strong active:scale-95"
               >
                 VIEW PROJECTS
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
                 href="#about"
-                className="inline-flex items-center gap-2 px-6 py-3 border border-slate-600 text-white font-semibold text-sm rounded-lg hover:border-cyber-blue/50 hover:text-cyber-blue transition-all duration-200"
+                className="btn-elastic inline-flex items-center gap-2 px-6 py-3 border border-slate-600 text-white font-semibold text-sm rounded-lg hover:border-cyber-blue/50 hover:text-cyber-blue transition-all duration-200 active:scale-95"
               >
                 ABOUT ME
               </a>
@@ -98,43 +109,68 @@ export default function Hero() {
           >
             {/* Central visual - Astronaut placeholder with tech rings */}
             <div className="relative w-80 h-80">
-              {/* Outer rotating ring */}
-              <div className="absolute inset-0 rounded-full border border-cyber-blue/20 animate-[spin_20s_linear_infinite]">
-                <div className="absolute -top-1 left-1/2 w-2 h-2 rounded-full bg-cyber-blue" />
+              {/* Outer rotating ring with parallax */}
+              <div
+                className="transition-transform duration-300 ease-out"
+                style={{ transform: parallax.offset(0.15) }}
+              >
+                <div className="w-full h-full rounded-full border border-cyber-blue/20 animate-[spin_20s_linear_infinite]">
+                  <div className="absolute -top-1 left-1/2 w-2 h-2 rounded-full bg-cyber-blue" />
+                </div>
               </div>
 
               {/* Middle ring */}
-              <div className="absolute inset-8 rounded-full border border-cyber-blue/15 animate-[spin_15s_linear_infinite_reverse]">
-                <div className="absolute -bottom-1 left-1/2 w-1.5 h-1.5 rounded-full bg-cyber-blue/60" />
+              <div
+                className="absolute inset-8 transition-transform duration-300 ease-out"
+                style={{ transform: parallax.offset(0.25) }}
+              >
+                <div className="w-full h-full rounded-full border border-cyber-blue/15 animate-[spin_15s_linear_infinite_reverse]">
+                  <div className="absolute -bottom-1 left-1/2 w-1.5 h-1.5 rounded-full bg-cyber-blue/60" />
+                </div>
               </div>
 
               {/* Inner ring */}
-              <div className="absolute inset-16 rounded-full border border-cyber-blue/10 animate-[spin_25s_linear_infinite]">
-                <div className="absolute -right-1 top-1/2 w-1 h-1 rounded-full bg-cyber-blue/40" />
+              <div
+                className="absolute inset-16 transition-transform duration-300 ease-out"
+                style={{ transform: parallax.offset(0.35) }}
+              >
+                <div className="w-full h-full rounded-full border border-cyber-blue/10 animate-[spin_25s_linear_infinite]">
+                  <div className="absolute -right-1 top-1/2 w-1 h-1 rounded-full bg-cyber-blue/40" />
+                </div>
               </div>
 
-              {/* Center element */}
-              <div className="absolute inset-20 rounded-full bg-gradient-to-br from-cyber-blue/10 to-transparent flex items-center justify-center glow-blue">
+              {/* Center element - mascot with hover wiggle */}
+              <div
+                className={`absolute inset-20 rounded-full bg-gradient-to-br from-cyber-blue/10 to-transparent flex items-center justify-center glow-blue cursor-pointer transition-transform duration-300 ${mascotHovered ? 'animate-mascot-wiggle' : ''}`}
+                onMouseEnter={handleMascotEnter}
+                onMouseLeave={handleMascotLeave}
+              >
                 <div className="text-center">
-                  <div className="text-5xl font-black text-cyber-blue/80 text-glow">Y</div>
+                  <div className={`text-5xl font-black text-cyber-blue/80 text-glow transition-all duration-300 ${mascotHovered ? 'scale-110' : 'scale-100'}`}>
+                    Y
+                  </div>
                   <div className="text-[8px] tracking-[0.3em] text-slate-500 mt-1">
                     YUAN SUYANG
                   </div>
                 </div>
               </div>
 
-              {/* Floating tech cards */}
+              {/* Floating tech cards with parallax */}
               {floatingCards.map((card, i) => (
                 <div
                   key={card.title}
-                  className={`absolute px-3 py-2 bg-[#0d1117]/80 backdrop-blur-sm border border-cyber-blue-dim rounded-lg ${
-                    i % 2 === 0 ? 'animate-float' : 'animate-float-delayed'
-                  }`}
-                  style={{ top: card.top, left: card.left }}
+                  className="absolute transition-transform duration-300 ease-out"
+                  style={{ top: card.top, left: card.left, transform: parallax.offset(card.depth) }}
                 >
-                  <span className="text-[9px] tracking-wider text-cyber-blue/70 whitespace-nowrap">
-                    {card.title}
-                  </span>
+                  <div
+                    className={`px-3 py-2 bg-[#0d1117]/80 backdrop-blur-sm border border-cyber-blue-dim rounded-lg ${
+                      i % 2 === 0 ? 'animate-float' : 'animate-float-delayed'
+                    }`}
+                  >
+                    <span className="text-[9px] tracking-wider text-cyber-blue/70 whitespace-nowrap">
+                      {card.title}
+                    </span>
+                  </div>
                 </div>
               ))}
 

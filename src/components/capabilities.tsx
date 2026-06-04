@@ -7,6 +7,7 @@ import {
   ShieldCheck,
   BrainCircuit,
 } from 'lucide-react';
+import { useMouseSpotlight } from '@/hooks/use-mouse-spotlight';
 
 const capabilities = [
   {
@@ -59,6 +60,26 @@ const capabilities = [
   },
 ];
 
+function SpotlightCard({ children, className, style }: { children: React.ReactNode; className: string; style: React.CSSProperties }) {
+  const { ref, onMouseMove, onMouseLeave, spotlightStyle } = useMouseSpotlight();
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={style}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+    >
+      {/* Mouse-following spotlight */}
+      <div
+        className="absolute inset-0 rounded-xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{ background: spotlightStyle }}
+      />
+      {children}
+    </div>
+  );
+}
+
 export default function Capabilities() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -96,9 +117,9 @@ export default function Capabilities() {
           {capabilities.map((cap, i) => {
             const Icon = cap.icon;
             return (
-              <div
+              <SpotlightCard
                 key={cap.id}
-                className={`group relative p-6 bg-[#0d1117] border border-cyber-blue-dim rounded-xl hover:border-cyber-blue/40 hover:bg-[#131a24] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(0,212,255,0.08)] ${
+                className={`group relative p-6 bg-[#0d1117] border border-cyber-blue-dim rounded-xl hover:border-cyber-blue/40 hover:bg-[#131a24] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_0_30px_rgba(0,212,255,0.08)] overflow-hidden ${
                   isVisible
                     ? 'opacity-100 translate-y-0'
                     : 'opacity-0 translate-y-6'
@@ -136,7 +157,7 @@ export default function Capabilities() {
 
                 {/* Glow effect on hover */}
                 <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-b from-cyber-blue/[0.03] to-transparent" />
-              </div>
+              </SpotlightCard>
             );
           })}
         </div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import { useMouseSpotlight } from '@/hooks/use-mouse-spotlight';
 
 const projects = [
   {
@@ -88,53 +89,67 @@ export default function Projects() {
         {/* Project Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {projects.map((project, i) => (
-            <div
-              key={project.title}
-              className={`group relative overflow-hidden rounded-xl border border-cyber-blue-dim bg-[#0d1117] hover:border-cyber-blue/40 transition-all duration-300 hover:-translate-y-1 cursor-pointer ${
-                isVisible
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-6'
-              }`}
-              style={{ transitionDelay: `${i * 100}ms` }}
-            >
-              {/* Project Visual Placeholder */}
-              <div
-                className={`h-48 bg-gradient-to-br ${project.gradient} flex items-center justify-center relative overflow-hidden`}
-              >
-                {/* Grid overlay */}
-                <div className="absolute inset-0 bg-grid opacity-30" />
-                {/* Decorative circles */}
-                <div className="relative">
-                  <div
-                    className={`w-16 h-16 rounded-2xl ${project.iconBg} border ${project.iconBorder} flex items-center justify-center backdrop-blur-sm`}
-                  >
-                    <div className="w-6 h-6 rounded-md border border-current text-cyber-blue/60 flex items-center justify-center">
-                      <ArrowUpRight className="w-3 h-3" />
-                    </div>
-                  </div>
-                </div>
-                {/* Hover arrow */}
-                <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ArrowUpRight className="w-5 h-5 text-cyber-blue" />
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-5">
-                <span className="text-[10px] tracking-widest text-cyber-blue/60 font-medium">
-                  {project.tag}
-                </span>
-                <h3 className="text-white font-bold text-sm mt-2 mb-2 group-hover:text-cyber-blue transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-slate-500 text-xs leading-relaxed">
-                  {project.description}
-                </p>
-              </div>
-            </div>
+            <ProjectCard key={project.title} project={project} index={i} isVisible={isVisible} />
           ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function ProjectCard({ project, index, isVisible }: { project: typeof projects[number]; index: number; isVisible: boolean }) {
+  const { ref, onMouseMove, onMouseLeave, spotlightStyle } = useMouseSpotlight();
+  return (
+    <div
+      ref={ref}
+      className={`group relative overflow-hidden rounded-xl border border-cyber-blue-dim bg-[#0d1117] hover:border-cyber-blue/40 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_8px_30px_rgba(0,212,255,0.1)] cursor-pointer ${
+        isVisible
+          ? 'opacity-100 translate-y-0'
+          : 'opacity-0 translate-y-6'
+      }`}
+      style={{ transitionDelay: `${index * 100}ms` }}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+    >
+      {/* Mouse-following spotlight */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+        style={{ background: spotlightStyle }}
+      />
+      {/* Project Visual Placeholder */}
+      <div
+        className={`h-48 bg-gradient-to-br ${project.gradient} flex items-center justify-center relative overflow-hidden`}
+      >
+        {/* Grid overlay */}
+        <div className="absolute inset-0 bg-grid opacity-30" />
+        {/* Decorative circles */}
+        <div className="relative">
+          <div
+            className={`w-16 h-16 rounded-2xl ${project.iconBg} border ${project.iconBorder} flex items-center justify-center backdrop-blur-sm`}
+          >
+            <div className="w-6 h-6 rounded-md border border-current text-cyber-blue/60 flex items-center justify-center">
+              <ArrowUpRight className="w-3 h-3" />
+            </div>
+          </div>
+        </div>
+        {/* Hover arrow */}
+        <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+          <ArrowUpRight className="w-5 h-5 text-cyber-blue" />
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="p-5">
+        <span className="text-[10px] tracking-widest text-cyber-blue/60 font-medium">
+          {project.tag}
+        </span>
+        <h3 className="text-white font-bold text-sm mt-2 mb-2 group-hover:text-cyber-blue transition-colors">
+          {project.title}
+        </h3>
+        <p className="text-slate-500 text-xs leading-relaxed">
+          {project.description}
+        </p>
+      </div>
+    </div>
   );
 }

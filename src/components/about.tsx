@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Mail,
   MessageCircle,
@@ -23,6 +23,7 @@ import {
   BrainCircuit,
   Cpu,
   Globe,
+  ChevronDown,
 } from 'lucide-react';
 import {
   Dialog,
@@ -31,6 +32,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from '@/components/ui/dialog';
+import { useMouseSpotlight } from '@/hooks/use-mouse-spotlight';
 
 const skills = [
   'Figma',
@@ -270,26 +272,31 @@ const campusTimeline = [
         title: '入读天津仁爱学院',
         description: '智能交互设计专业',
         icon: GraduationCap,
+        isCore: true,
       },
       {
         title: '军训优秀学生',
         description: '9月 · 校级荣誉',
         icon: Award,
+        isCore: false,
       },
       {
         title: '英语演讲大赛校级三等奖',
         description: '10月 · 外研社·国才杯"理解当代中国"',
         icon: Mic,
+        isCore: true,
       },
       {
         title: '加入创业实践协会',
         description: '10月 · 天津仁爱学院',
         icon: Users,
+        isCore: false,
       },
       {
         title: '主持首届大学生职业规划大赛',
         description: '12月 · 天津仁爱学院',
         icon: Mic,
+        isCore: false,
       },
     ],
   },
@@ -300,51 +307,61 @@ const campusTimeline = [
         title: '英语文化节参与及获奖',
         description: '5月 · 朗诵《Youth》，朗读赛道决赛校级三等奖',
         icon: Award,
+        isCore: true,
       },
       {
         title: '获百万同题英语写作大赛优秀作品奖',
         description: '6月 · 2024百万同题英语写作大赛 · 全国高等学校大学外语教学研究会',
         icon: Award,
+        isCore: true,
       },
       {
         title: '主持2024届毕业生晚会',
         description: '6月 · 数智传媒与设计艺术学院"艺起向未来"',
         icon: Mic,
+        isCore: false,
       },
       {
         title: '获谷歌数字人才培养计划结业证书',
         description: '8月 · Google × 中国大学MOOC · 海外数字营销系列课程',
         icon: Globe,
+        isCore: true,
       },
       {
         title: '获"悦读之星"校园选拔赛三等奖',
         description: '9月13日 · 2024书香天津·校园大学生阅读活动',
         icon: BookOpen,
+        isCore: false,
       },
       {
         title: '被聘为创业实践协会"实践部部长"',
         description: '9月 · 天津仁爱学院 · 任期一年',
         icon: UserCheck,
+        isCore: false,
       },
       {
         title: '获"青马工程"培训班结业证书',
         description: '10月 · 机械工程学院第二期',
         icon: GraduationCap,
+        isCore: false,
       },
       {
         title: '加入智交互产教融合创新实验室',
         description: '10月 · 数智传媒与设计艺术学院',
         icon: GraduationCap,
+        isCore: false,
       },
       {
         title: '获"优秀学生二等奖学金"',
         description: '12月 · 天津仁爱学院2023-2024学年',
         icon: Award,
+        isCore: true,
       },
       {
         title: '获第二届职业规划大赛校级三等奖',
         description: '12月16日 · 天津仁爱学院',
         icon: Award,
+        isCore: false,
       },
     ],
   },
@@ -355,77 +372,92 @@ const campusTimeline = [
         title: '参加全球服务设计共创节',
         description: '2月 · GLOBAL SERVICE JAM · 作品《一场物质的轮回演出》',
         icon: Globe,
+        isCore: true,
       },
       {
         title: '获Prompt Engineer提示工程师认证',
         description: '3月 · Datawhale × 讯飞星火',
         icon: BrainCircuit,
+        isCore: true,
       },
       {
         title: '获AI Agent能力认证',
         description: '6月 · Datawhale × 扣子（Coze）',
         icon: Cpu,
+        isCore: true,
       },
       {
         title: '"知网杯"数字素养大赛双项三等奖',
-        description: '7月 · 第三届天津高校数字素养大赛 · 个人三等奖 + 团队三等奖',
+        description: '7月 · 第三届天津高校数字素养大赛 · 个人三等奖 + 团体三等奖',
         icon: Trophy,
+        isCore: true,
       },
       {
         title: '中国国际大学生创新大赛天津赛区铜奖',
         description: '7月 · 第一负责人获铜奖一项，成员身份获铜奖一项',
         icon: Award,
+        isCore: true,
       },
       {
         title: '担任创业实践协会社团主席',
         description: '9月 · 天津仁爱学院',
         icon: Users,
+        isCore: true,
       },
       {
         title: '担任智交互产教融合创新实验室学生负责人',
         description: '9月 · 数智传媒与设计艺术学院',
         icon: GraduationCap,
+        isCore: true,
       },
       {
         title: '加入网络与信息安全微专业',
         description: '9月 · 辅修',
         icon: ShieldCheck,
+        isCore: true,
       },
       {
         title: '应聘图书馆信息咨询助理馆员',
         description: '10月27日 · 天津仁爱图书馆 · 为期一年',
         icon: Briefcase,
+        isCore: false,
       },
       {
         title: '发明专利一项',
         description:
           '10月 · 一种配电柜柜体的焊接装置 · ZL 2025 1 1071601.6',
         icon: FileText,
+        isCore: true,
       },
       {
         title: '获全球AI攻防挑战赛AI守卫者称号',
         description: '11月 · 2025全球AI攻防挑战赛·鉴真季 · 中国图象图形学学会 × 蚂蚁集团',
         icon: ShieldCheck,
+        isCore: true,
       },
       {
         title: '获NVIDIA深度学习基础认证',
         description: '11月28日 · 深度学习基础——理论与实践入门',
         icon: BrainCircuit,
+        isCore: true,
       },
       {
         title: '"复兴杯"网络安全精英赛晋级复赛',
         description: '11月17日 · 网络攻防赛道 + 人工智能应用与安全赛道 · 双赛道晋级',
         icon: ShieldCheck,
+        isCore: true,
       },
       {
         title: '网络安全主题演讲获二等奖',
         description: '11月 · 智算工程学院"国安强音——奏响网络安全时代华章"',
         icon: Mic,
+        isCore: false,
       },
       {
         title: '获"社团活动奖""优秀学生干部"荣誉称号',
         description: '12月 · 天津仁爱学院2024-2025学年校级荣誉',
         icon: Award,
+        isCore: true,
       },
     ],
   },
@@ -437,17 +469,20 @@ const campusTimeline = [
         description:
           '4月15日 · "筑牢安全防线，激扬青春誓言"第十一个全民国家安全教育日',
         icon: Trophy,
+        isCore: true,
       },
       {
         title: '大创项目获国家级立项',
         description:
           '5月 · 《智宠灵瑞——基于具身智能的适老化情感陪伴机器人》创新训练项目 · 为期一年',
         icon: Flame,
+        isCore: true,
       },
       {
         title: '获Datawhale AI春训营结营证书',
         description: '5月24日 · 第四届世界科学智能大赛·电力市场交易赛道：储能电站收益优化',
         icon: BrainCircuit,
+        isCore: true,
       },
     ],
   },
@@ -558,6 +593,7 @@ export default function About() {
   const [activeCredential, setActiveCredential] =
     useState<CredentialDetail | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [expandedYears, setExpandedYears] = useState<Record<string, boolean>>({});
 
   const handleCredentialClick = (credentialId: string) => {
     const cred = credentials.find((c) => c.id === credentialId);
@@ -565,6 +601,10 @@ export default function About() {
       setActiveCredential(cred);
       setDialogOpen(true);
     }
+  };
+
+  const toggleYear = (year: string) => {
+    setExpandedYears((prev) => ({ ...prev, [year]: !prev[year] }));
   };
 
   useEffect(() => {
@@ -673,76 +713,163 @@ export default function About() {
               <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-cyber-blue/50 via-cyber-blue/20 to-transparent" />
 
               <div className="space-y-5">
-                {campusTimeline.map((group, gi) => (
-                  <div key={group.year}>
-                    {/* Year header */}
-                    <div className="relative pl-6 mb-3">
-                      <div className="absolute left-0 top-0.5 w-[15px] h-[15px] rounded-full border-2 border-cyber-blue bg-[#0d1117] flex items-center justify-center">
-                        <div className="w-[5px] h-[5px] rounded-full bg-cyber-blue" />
+                {campusTimeline.map((group) => {
+                  const coreEvents = group.events.filter((e) => e.isCore);
+                  const auxEvents = group.events.filter((e) => !e.isCore);
+                  const hasAux = auxEvents.length > 0;
+                  const isExpanded = expandedYears[group.year] ?? false;
+
+                  return (
+                    <div key={group.year}>
+                      {/* Year header */}
+                      <div className="relative pl-6 mb-3">
+                        <div className="absolute left-0 top-0.5 w-[15px] h-[15px] rounded-full border-2 border-cyber-blue bg-[#0d1117] flex items-center justify-center">
+                          <div className="w-[5px] h-[5px] rounded-full bg-cyber-blue" />
+                        </div>
+                        <span className="text-cyber-blue text-xs font-bold font-mono tracking-wider">
+                          {group.year}
+                        </span>
                       </div>
-                      <span className="text-cyber-blue text-xs font-bold font-mono tracking-wider">
-                        {group.year}
-                      </span>
-                    </div>
 
-                    {/* Events */}
-                    <div className="space-y-3 ml-6 border-l border-cyber-blue/10 pl-4">
-                      {group.events.map((event, ei) => {
-                        const Icon = event.icon;
-                        const credentialId =
-                          eventCredentialMap[event.title] ?? null;
-                        const hasCredential = credentialId !== null;
+                      {/* Core events (always visible) */}
+                      <div className="space-y-3 ml-6 border-l border-cyber-blue/10 pl-4">
+                        {coreEvents.map((event, ei) => {
+                          const Icon = event.icon;
+                          const credentialId =
+                            eventCredentialMap[event.title] ?? null;
+                          const hasCredential = credentialId !== null;
 
-                        return (
-                          <div key={`${group.year}-${ei}`} className="relative">
-                            {/* Sub-dot */}
-                            <div className="absolute -left-[21px] top-1 w-[7px] h-[7px] rounded-full border border-cyber-blue/40 bg-[#0d1117]" />
-
-                            <div className="flex items-start gap-2">
-                              <div
-                                className={`w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 ${
-                                  hasCredential
-                                    ? 'bg-green-400/10 border border-green-400/20'
-                                    : 'bg-cyber-blue/10 border border-cyber-blue/15'
-                                }`}
-                              >
-                                <Icon
-                                  className={`w-3 h-3 ${
+                          return (
+                            <div key={`core-${ei}`} className="relative">
+                              <div className="absolute -left-[21px] top-1 w-[7px] h-[7px] rounded-full border border-cyber-blue/40 bg-[#0d1117]" />
+                              <div className="flex items-start gap-2">
+                                <div
+                                  className={`w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 ${
                                     hasCredential
-                                      ? 'text-green-400/70'
-                                      : 'text-cyber-blue/60'
+                                      ? 'bg-green-400/10 border border-green-400/20'
+                                      : 'bg-cyber-blue/10 border border-cyber-blue/15'
                                   }`}
-                                />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <div className="flex items-center gap-1.5 flex-wrap">
-                                  <h4 className="text-white text-[11px] font-semibold leading-tight">
-                                    {event.title}
-                                  </h4>
-                                  {hasCredential && (
-                                    <button
-                                      type="button"
-                                      onClick={() =>
-                                        handleCredentialClick(credentialId)
-                                      }
-                                      className="inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] text-green-400 bg-green-400/10 border border-green-400/20 rounded-full hover:bg-green-400/20 hover:border-green-400/40 transition-colors cursor-pointer flex-shrink-0"
-                                    >
-                                      <FileText className="w-2.5 h-2.5" />
-                                      查看详情
-                                    </button>
-                                  )}
+                                >
+                                  <Icon
+                                    className={`w-3 h-3 ${
+                                      hasCredential
+                                        ? 'text-green-400/70'
+                                        : 'text-cyber-blue/60'
+                                    }`}
+                                  />
                                 </div>
-                                <p className="text-slate-500 text-[10px] mt-0.5 leading-relaxed">
-                                  {event.description}
-                                </p>
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center gap-1.5 flex-wrap">
+                                    <h4 className="text-white text-[11px] font-semibold leading-tight">
+                                      {event.title}
+                                    </h4>
+                                    {hasCredential && (
+                                      <button
+                                        type="button"
+                                        onClick={() =>
+                                          handleCredentialClick(credentialId)
+                                        }
+                                        className="inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] text-green-400 bg-green-400/10 border border-green-400/20 rounded-full hover:bg-green-400/20 hover:border-green-400/40 transition-colors cursor-pointer flex-shrink-0"
+                                      >
+                                        <FileText className="w-2.5 h-2.5" />
+                                        查看详情
+                                      </button>
+                                    )}
+                                  </div>
+                                  <p className="text-slate-500 text-[10px] mt-0.5 leading-relaxed">
+                                    {event.description}
+                                  </p>
+                                </div>
                               </div>
                             </div>
+                          );
+                        })}
+
+                        {/* Auxiliary events (collapsible) */}
+                        {hasAux && (
+                          <div
+                            className="overflow-hidden transition-all duration-500 ease-in-out"
+                            style={{
+                              maxHeight: isExpanded ? auxEvents.length * 80 + 50 : '0px',
+                              opacity: isExpanded ? 1 : 0,
+                            }}
+                          >
+                            {auxEvents.map((event, ei) => {
+                              const Icon = event.icon;
+                              const credentialId =
+                                eventCredentialMap[event.title] ?? null;
+                              const hasCredential = credentialId !== null;
+
+                              return (
+                                <div key={`aux-${ei}`} className="relative mt-3">
+                                  <div className="absolute -left-[21px] top-1 w-[7px] h-[7px] rounded-full border border-slate-600/40 bg-[#0d1117]" />
+                                  <div className="flex items-start gap-2">
+                                    <div
+                                      className={`w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                                        hasCredential
+                                          ? 'bg-green-400/10 border border-green-400/20'
+                                          : 'bg-slate-700/30 border border-slate-600/20'
+                                      }`}
+                                    >
+                                      <Icon
+                                        className={`w-3 h-3 ${
+                                          hasCredential
+                                            ? 'text-green-400/70'
+                                            : 'text-slate-500/60'
+                                        }`}
+                                      />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                      <div className="flex items-center gap-1.5 flex-wrap">
+                                        <h4 className="text-slate-300 text-[11px] font-semibold leading-tight">
+                                          {event.title}
+                                        </h4>
+                                        {hasCredential && (
+                                          <button
+                                            type="button"
+                                            onClick={() =>
+                                              handleCredentialClick(credentialId)
+                                            }
+                                            className="inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] text-green-400 bg-green-400/10 border border-green-400/20 rounded-full hover:bg-green-400/20 hover:border-green-400/40 transition-colors cursor-pointer flex-shrink-0"
+                                          >
+                                            <FileText className="w-2.5 h-2.5" />
+                                            查看详情
+                                          </button>
+                                        )}
+                                      </div>
+                                      <p className="text-slate-500 text-[10px] mt-0.5 leading-relaxed">
+                                        {event.description}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            })}
                           </div>
-                        );
-                      })}
+                        )}
+
+                        {/* Toggle button */}
+                        {hasAux && (
+                          <button
+                            type="button"
+                            onClick={() => toggleYear(group.year)}
+                            className="mt-2 flex items-center gap-1 text-[10px] text-slate-500 hover:text-cyber-blue transition-colors duration-300 cursor-pointer group/toggle"
+                          >
+                            <ChevronDown
+                              className={`w-3 h-3 transition-transform duration-300 ${
+                                isExpanded ? 'rotate-180' : ''
+                              }`}
+                            />
+                            <span className="inline-flex items-center gap-0.5">
+                              {isExpanded ? '收起' : '···查看更多'}
+                              <span className="text-slate-600">({auxEvents.length})</span>
+                            </span>
+                          </button>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>

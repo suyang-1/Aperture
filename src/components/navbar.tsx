@@ -64,7 +64,7 @@ export default function Navbar() {
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="text-slate-400 hover:text-cyber-blue text-xs tracking-widest transition-colors duration-200"
+                className="text-slate-400 hover:text-cyber-blue text-xs tracking-widest btn-elastic inline-block"
               >
                 {link.label}
               </a>

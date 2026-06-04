@@ -239,3 +239,110 @@ body {
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out forwards;
 }
+
+/* ---- Micro-interaction System ---- */
+
+/* Elastic scale for nav links & buttons */
+.btn-elastic {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.3s ease,
+              background-color 0.3s ease,
+              border-color 0.3s ease;
+}
+.btn-elastic:hover {
+  transform: scale(1.04);
+}
+.btn-elastic:active {
+  transform: scale(0.97);
+  transition-duration: 0.1s;
+}
+
+/* Card lift + shadow on hover */
+.card-lift {
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 212, 255, 0.08), 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Mouse-following highlight overlay for cards */
+.card-spotlight {
+  position: relative;
+  overflow: hidden;
+}
+.card-spotlight::before {
+  content: '';
+  position: absolute;
+  top: var(--mouse-y, 50%);
+  left: var(--mouse-x, 50%);
+  width: 300px;
+  height: 300px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+}
+.card-spotlight:hover::before {
+  opacity: 1;
+}
+
+/* Mascot wiggle animation */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  15% { transform: rotate(3deg); }
+  30% { transform: rotate(-3deg); }
+  45% { transform: rotate(2deg); }
+  60% { transform: rotate(-1deg); }
+  75% { transform: rotate(0.5deg); }
+}
+.mascot-hover:hover {
+  animation: wiggle 0.8s ease-in-out;
+}
+
+/* Parallax element base */
+.parallax-layer {
+  transition: transform 0.15s ease-out;
+  will-change: transform;
+}
+
+/* Timeline fold animation */
+.timeline-fold {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.4s ease;
+}
+.timeline-fold.expanded {
+  max-height: 2000px;
+  opacity: 1;
+}
+
+/* Subtle blink for mascot eye elements */
+@keyframes blink {
+  0%, 90%, 100% { opacity: 1; }
+  95% { opacity: 0.1; }
+}
+.mascot-blink {
+  animation: blink 4s ease-in-out infinite;
+}
+
+/* Press bounce for primary buttons */
+.btn-press {
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s ease,
+              background-color 0.3s ease;
+}
+.btn-press:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.25);
+}
+.btn-press:active {
+  transform: scale(0.96);
+  transition-duration: 0.08s;
+}
