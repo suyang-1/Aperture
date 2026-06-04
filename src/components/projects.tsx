@@ -105,27 +105,25 @@ function PatentCard({ isVisible }: { isVisible: boolean }) {
         style={{ background: spotlightStyle }}
       />
 
-      {/* Header visual */}
-      <div className="h-36 bg-gradient-to-br from-blue-900/40 to-cyan-900/20 flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-30" />
-        {/* Central icon */}
-        <div className="relative">
-          <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center backdrop-blur-sm">
-            <FileText className="w-6 h-6 text-cyber-blue/70" />
-          </div>
-          {/* Decorative ring */}
-          <div className="absolute -inset-3 rounded-full border border-cyber-blue/10 animate-[spin_20s_linear_infinite]" />
+      {/* Header: Patent abstract image */}
+      <div className="relative overflow-hidden">
+        <div className="w-full bg-gradient-to-br from-blue-900/30 to-cyan-900/10">
+          <img
+            src="/assets/patent-abstract.png"
+            alt="一种配电柜柜体的焊接装置 - 专利摘要附图"
+            className="w-full h-auto object-contain"
+          />
         </div>
         {/* Patent badge */}
-        <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-1 bg-green-500/15 border border-green-500/25 rounded-full">
+        <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-1 bg-green-500/15 border border-green-500/25 rounded-full backdrop-blur-sm">
           <Shield className="w-3 h-3 text-green-400/80" />
           <span className="text-[9px] tracking-wider text-green-400/90 font-semibold">
             INVENTION PATENT
           </span>
         </div>
         {/* Hover arrow */}
-        <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-          <ArrowUpRight className="w-5 h-5 text-cyber-blue" />
+        <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-[#0d1117]/60 rounded-full p-1.5">
+          <ArrowUpRight className="w-4 h-4 text-cyber-blue" />
         </div>
       </div>
 
