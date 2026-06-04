@@ -11,6 +11,10 @@ import {
   Sparkles,
   Zap,
   Layers,
+  Code2,
+  Play,
+  Image as ImageIcon,
+  Presentation,
 } from 'lucide-react';
 import { useMouseSpotlight } from '@/hooks/use-mouse-spotlight';
 
@@ -326,6 +330,173 @@ function ProjectCard({
   );
 }
 
+/* ---------- Hackathon Card ---------- */
+const hackathonInfo = {
+  title: 'BoHack 2025 天津黑客松',
+  subtitle: 'LZY 005组 · 企业赛道·九安医疗',
+  track: '企业赛道',
+  enterprise: '九安医疗',
+  team: 'LZY 005组',
+  date: '2025.12.26-28',
+  venue: '天开高教科创园',
+  organizers: ['天开高教科创园', '天津大学宣怀学院', '北洋海棠基金', '天津大学科技园', '创业知本社'],
+  deliverable: '小程序设计与开发（48小时极限开发）',
+  posterUrl: '/assets/bohack-poster.jpg',
+  pptUrl: '/assets/bohack-ppt.pptx',
+  videoUrl: '/assets/bohack-demo-video.mp4',
+  photo1Url: '/assets/bohack-photo1.jpg',
+  photo2Url: '/assets/bohack-photo2.jpg',
+};
+
+function HackathonCard({ isVisible }: { isVisible: boolean }) {
+  const [expanded, setExpanded] = useState(false);
+  const { ref, onMouseMove, onMouseLeave, spotlightStyle } =
+    useMouseSpotlight();
+
+  return (
+    <div
+      ref={ref}
+      className={`group relative overflow-hidden rounded-xl border border-cyber-blue-dim bg-[#0d1117] hover:border-cyber-blue/40 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,212,255,0.1)] ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+      }`}
+      style={{ transitionDelay: '300ms' }}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+    >
+      {/* Spotlight */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+        style={{ background: spotlightStyle }}
+      />
+
+      {/* Header: Poster image */}
+      <div className="relative overflow-hidden">
+        <div className="w-full bg-gradient-to-br from-purple-900/30 to-indigo-900/10">
+          <img
+            src={hackathonInfo.posterUrl}
+            alt="BoHack 2025 天津黑客松海报"
+            className="w-full h-auto object-contain max-h-64"
+          />
+        </div>
+        {/* Badge */}
+        <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-1 bg-purple-500/15 border border-purple-500/25 rounded-full backdrop-blur-sm">
+          <Code2 className="w-3 h-3 text-purple-400/80" />
+          <span className="text-[9px] tracking-wider text-purple-400/90 font-semibold">
+            HACKATHON
+          </span>
+        </div>
+        {/* Hover arrow */}
+        <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-[#0d1117]/60 rounded-full p-1.5">
+          <ArrowUpRight className="w-4 h-4 text-cyber-blue" />
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="p-5">
+        {/* Title & tag */}
+        <span className="text-[10px] tracking-widest text-purple-400/60 font-medium">
+          BOHACK 2025 · 链动创新
+        </span>
+        <h3 className="text-white font-bold text-base mt-1.5 mb-1 group-hover:text-cyber-blue transition-colors">
+          {hackathonInfo.title}
+        </h3>
+        <p className="text-slate-500 text-xs mb-3">
+          {hackathonInfo.subtitle}
+        </p>
+
+        {/* Key meta grid */}
+        <div className="grid grid-cols-2 gap-3 mb-3">
+          <MetaItem label="赛道" value={hackathonInfo.track} />
+          <MetaItem label="企业" value={hackathonInfo.enterprise} />
+          <MetaItem label="时间" value={hackathonInfo.date} />
+          <MetaItem label="团队" value={hackathonInfo.team} />
+        </div>
+
+        {/* Deliverable */}
+        <div className="flex items-center gap-2 px-3 py-2 bg-cyber-blue/5 border border-cyber-blue/10 rounded-lg mb-3">
+          <Zap className="w-3.5 h-3.5 text-cyber-blue/70 flex-shrink-0" />
+          <span className="text-[11px] text-slate-300">
+            {hackathonInfo.deliverable}
+          </span>
+        </div>
+
+        {/* Expand toggle */}
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="flex items-center gap-1.5 text-[11px] text-cyber-blue/70 hover:text-cyber-blue transition-colors mb-2"
+        >
+          <ChevronDown
+            className={`w-3.5 h-3.5 transition-transform duration-300 ${
+              expanded ? 'rotate-180' : ''
+            }`}
+          />
+          {expanded ? '收起详情' : '查看更多'}
+        </button>
+
+        {/* Expanded details */}
+        <div
+          className="overflow-hidden transition-all duration-500 ease-out"
+          style={{
+            maxHeight: expanded ? '500px' : '0px',
+            opacity: expanded ? 1 : 0,
+          }}
+        >
+          <div className="pt-2 space-y-3">
+            {/* Venue & Organizers */}
+            <div className="space-y-1.5">
+              <DetailRow label="地点" value={hackathonInfo.venue} />
+              <DetailRow
+                label="主办方"
+                value={hackathonInfo.organizers.join(' / ')}
+              />
+            </div>
+
+            {/* Media links */}
+            <div className="flex flex-wrap gap-2 pt-1">
+              <a
+                href={hackathonInfo.videoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-[10px] text-cyber-blue bg-cyber-blue/10 border border-cyber-blue/20 rounded-lg hover:bg-cyber-blue/20 hover:border-cyber-blue/40 transition-colors"
+              >
+                <Play className="w-3 h-3" />
+                产品演示视频
+              </a>
+              <a
+                href={hackathonInfo.pptUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-[10px] text-cyber-blue bg-cyber-blue/10 border border-cyber-blue/20 rounded-lg hover:bg-cyber-blue/20 hover:border-cyber-blue/40 transition-colors"
+              >
+                <Presentation className="w-3 h-3" />
+                路演PPT
+              </a>
+              <a
+                href={hackathonInfo.photo1Url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-[10px] text-cyber-blue bg-cyber-blue/10 border border-cyber-blue/20 rounded-lg hover:bg-cyber-blue/20 hover:border-cyber-blue/40 transition-colors"
+              >
+                <ImageIcon className="w-3 h-3" />
+                团队协作照片
+              </a>
+              <a
+                href={hackathonInfo.photo2Url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-[10px] text-cyber-blue bg-cyber-blue/10 border border-cyber-blue/20 rounded-lg hover:bg-cyber-blue/20 hover:border-cyber-blue/40 transition-colors"
+              >
+                <ImageIcon className="w-3 h-3" />
+                路演现场照片
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ---------- Main Component ---------- */
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -378,6 +549,9 @@ export default function Projects() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Patent card (first, spanning full detail) */}
           <PatentCard isVisible={isVisible} />
+
+          {/* Hackathon card */}
+          <HackathonCard isVisible={isVisible} />
 
           {/* Other project cards */}
           {projects.map((project, i) => (

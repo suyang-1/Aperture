@@ -259,6 +259,28 @@ const credentials: CredentialDetail[] = [
     fileUrl: '/assets/datawhale-spring-camp.png',
     fileType: 'image',
   },
+  {
+    id: 'bohack-2025',
+    name: 'BoHack 2025 天津黑客松参赛项目',
+    issuer: '天开高教科创园 / 天津大学宣怀学院 / 北洋海棠基金',
+    date: '2025年12月26日-28日',
+    highlights: [
+      '赛事：BoHack 2025 天津黑客松 · "链动创新"',
+      '赛道：企业赛道——九安医疗',
+      '团队：LZY 005组',
+      '产出：小程序设计与开发（48小时极限开发）',
+      '成果展示：路演PPT + 产品演示视频',
+      '主办方：天开高教科创园 / 天津大学宣怀学院 / 北洋海棠基金 / 天津大学科技园 / 创业知本社',
+    ],
+    fileUrl: '/assets/bohack-poster.jpg',
+    fileType: 'image',
+    extraLinks: [
+      { label: '查看路演PPT', url: '/assets/bohack-ppt.pptx' },
+      { label: '查看产品演示视频', url: '/assets/bohack-demo-video.mp4' },
+      { label: '查看活动照片-团队协作', url: '/assets/bohack-photo1.jpg' },
+      { label: '查看活动照片-路演现场', url: '/assets/bohack-photo2.jpg' },
+    ],
+  },
 ];
 
 /* ---------- Which timeline events have credentials ---------- */
@@ -275,6 +297,7 @@ const eventCredentialMap: Record<string, string> = {
   '获NVIDIA深度学习基础认证': 'nvidia-dl-cert',
   '"复兴杯"网络安全精英赛晋级复赛': 'fuxing-cup-attack',
   '获Datawhale AI春训营结营证书': 'datawhale-spring-camp',
+  '参加BoHack 2025天津黑客松': 'bohack-2025',
 };
 
 const campusTimeline = [
@@ -470,6 +493,12 @@ const campusTimeline = [
         title: '获"社团活动奖""优秀学生干部"荣誉称号',
         description: '12月 · 天津仁爱学院2024-2025学年校级荣誉',
         icon: Award,
+        isCore: true,
+      },
+      {
+        title: '参加BoHack 2025天津黑客松',
+        description: '12月26-28日 · 企业赛道·九安医疗 · LZY 005组 · 小程序设计与开发',
+        icon: Flame,
         isCore: true,
       },
     ],
