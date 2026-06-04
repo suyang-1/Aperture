@@ -11,7 +11,19 @@ import {
   Users,
   Trophy,
   ShieldCheck,
+  ExternalLink,
+  FileText,
+  Calendar,
+  Building2,
+  Sparkles,
 } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from '@/components/ui/dialog';
 
 const skills = [
   'Figma',
@@ -27,6 +39,42 @@ const skills = [
   '社团管理',
   'More',
 ];
+
+/* ---------- Credential detail type ---------- */
+interface CredentialDetail {
+  id: string;
+  name: string;
+  issuer: string;
+  date: string;
+  highlights: string[];
+  fileUrl?: string;
+  fileType?: 'pdf' | 'image';
+}
+
+const credentials: CredentialDetail[] = [
+  {
+    id: 'patent-welding',
+    name: '一种配电柜柜体的焊接装置',
+    issuer: '国家知识产权局',
+    date: '2025年10月31日（授权公告日）',
+    highlights: [
+      '专利类型：发明专利',
+      '专利号：ZL 2025 1 1071601.6',
+      '授权公告号：CN 120551632 B',
+      '证书号：第8428532号',
+      '专利权人：天津仁爱学院',
+      '发明人：袁铁彪、葛军超、刘金剑、于洋洋、袁苏洋、孙熙然、储青海',
+      '专利申请日：2025年08月01日',
+    ],
+    fileUrl: '/assets/patent-certificate.pdf',
+    fileType: 'pdf',
+  },
+];
+
+/* ---------- Which timeline events have credentials ---------- */
+const eventCredentialMap: Record<string, string> = {
+  '发明专利一项': 'patent-welding',
+};
 
 const campusTimeline = [
   {
@@ -83,6 +131,12 @@ const campusTimeline = [
         icon: Award,
       },
       {
+        title: '发明专利一项',
+        description:
+          '10月 · 一种配电柜柜体的焊接装置 · ZL 2025 1 1071601.6',
+        icon: FileText,
+      },
+      {
         title: '担任创业实践协会社团主席',
         description: '9月 · 天津仁爱学院',
         icon: Users,
@@ -107,9 +161,113 @@ const contacts = [
   { icon: MapPin, label: 'Location', value: '天津市' },
 ];
 
+/* ---------- Credential Detail Dialog ---------- */
+function CredentialDialog({
+  credential,
+  open,
+  onOpenChange,
+}: {
+  credential: CredentialDetail | null;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}) {
+  if (!credential) return null;
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="bg-[#0d1117] border border-cyber-blue/30 text-white sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2 text-cyber-blue">
+            <FileText className="w-5 h-5" />
+            <span className="text-sm font-bold tracking-wide">
+              材料详情
+            </span>
+          </DialogTitle>
+          <DialogDescription className="text-slate-400 text-xs sr-only">
+            证书或专利的详细摘要信息
+          </DialogDescription>
+        </DialogHeader>
+
+        <div className="space-y-4 mt-1">
+          {/* Name */}
+          <div>
+            <h3 className="text-white font-semibold text-base leading-snug">
+              {credential.name}
+            </h3>
+          </div>
+
+          {/* Meta info */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-2 text-slate-300 text-xs">
+              <Building2 className="w-3.5 h-3.5 text-cyber-blue/60 flex-shrink-0" />
+              <span>
+                <span className="text-slate-500">颁发机构：</span>
+                {credential.issuer}
+              </span>
+            </div>
+            <div className="flex items-center gap-2 text-slate-300 text-xs">
+              <Calendar className="w-3.5 h-3.5 text-cyber-blue/60 flex-shrink-0" />
+              <span>
+                <span className="text-slate-500">时间：</span>
+                {credential.date}
+              </span>
+            </div>
+          </div>
+
+          {/* Highlights */}
+          <div className="bg-[#06080f] border border-cyber-blue/15 rounded-lg p-3">
+            <div className="flex items-center gap-1.5 mb-2">
+              <Sparkles className="w-3.5 h-3.5 text-cyber-blue/70" />
+              <span className="text-[11px] text-cyber-blue/80 font-semibold tracking-wider">
+                核心信息
+              </span>
+            </div>
+            <ul className="space-y-1.5">
+              {credential.highlights.map((h, i) => (
+                <li
+                  key={i}
+                  className="text-[11px] text-slate-400 leading-relaxed flex items-start gap-1.5"
+                >
+                  <span className="w-1 h-1 rounded-full bg-cyber-blue/50 mt-1.5 flex-shrink-0" />
+                  {h}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* File link */}
+          {credential.fileUrl && (
+            <a
+              href={credential.fileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3 py-2 text-xs text-cyber-blue bg-cyber-blue/10 border border-cyber-blue/20 rounded-lg hover:bg-cyber-blue/20 hover:border-cyber-blue/40 transition-colors"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              查看原始{credential.fileType === 'pdf' ? 'PDF' : '图片'}文件
+            </a>
+          )}
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+/* ---------- Main Component ---------- */
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [activeCredential, setActiveCredential] =
+    useState<CredentialDetail | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const handleCredentialClick = (credentialId: string) => {
+    const cred = credentials.find((c) => c.id === credentialId);
+    if (cred) {
+      setActiveCredential(cred);
+      setDialogOpen(true);
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -174,10 +332,15 @@ export default function About() {
                 <GraduationCap className="w-3 h-3" />
                 智能交互设计
               </span>
-              <span className="inline-flex items-center gap-1 px-2 py-1 text-[10px] tracking-wider text-green-400 bg-green-400/10 border border-green-400/20 rounded-full">
+              <button
+                type="button"
+                onClick={() => handleCredentialClick('patent-welding')}
+                className="inline-flex items-center gap-1 px-2 py-1 text-[10px] tracking-wider text-green-400 bg-green-400/10 border border-green-400/20 rounded-full hover:bg-green-400/20 hover:border-green-400/40 transition-colors cursor-pointer"
+              >
                 <Award className="w-3 h-3" />
                 发明专利一项
-              </span>
+                <ExternalLink className="w-2.5 h-2.5 opacity-60" />
+              </button>
               <span className="inline-flex items-center gap-1 px-2 py-1 text-[10px] tracking-wider text-amber-400 bg-amber-400/10 border border-amber-400/20 rounded-full">
                 <Users className="w-3 h-3" />
                 社团主席
@@ -228,19 +391,49 @@ export default function About() {
                     <div className="space-y-3 ml-6 border-l border-cyber-blue/10 pl-4">
                       {group.events.map((event, ei) => {
                         const Icon = event.icon;
+                        const credentialId =
+                          eventCredentialMap[event.title] ?? null;
+                        const hasCredential = credentialId !== null;
+
                         return (
                           <div key={`${group.year}-${ei}`} className="relative">
                             {/* Sub-dot */}
                             <div className="absolute -left-[21px] top-1 w-[7px] h-[7px] rounded-full border border-cyber-blue/40 bg-[#0d1117]" />
 
                             <div className="flex items-start gap-2">
-                              <div className="w-6 h-6 rounded-md bg-cyber-blue/10 border border-cyber-blue/15 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <Icon className="w-3 h-3 text-cyber-blue/60" />
+                              <div
+                                className={`w-6 h-6 rounded-md flex items-center justify-center flex-shrink-0 mt-0.5 ${
+                                  hasCredential
+                                    ? 'bg-green-400/10 border border-green-400/20'
+                                    : 'bg-cyber-blue/10 border border-cyber-blue/15'
+                                }`}
+                              >
+                                <Icon
+                                  className={`w-3 h-3 ${
+                                    hasCredential
+                                      ? 'text-green-400/70'
+                                      : 'text-cyber-blue/60'
+                                  }`}
+                                />
                               </div>
-                              <div>
-                                <h4 className="text-white text-[11px] font-semibold leading-tight">
-                                  {event.title}
-                                </h4>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-1.5 flex-wrap">
+                                  <h4 className="text-white text-[11px] font-semibold leading-tight">
+                                    {event.title}
+                                  </h4>
+                                  {hasCredential && (
+                                    <button
+                                      type="button"
+                                      onClick={() =>
+                                        handleCredentialClick(credentialId)
+                                      }
+                                      className="inline-flex items-center gap-0.5 px-1.5 py-0.5 text-[9px] text-green-400 bg-green-400/10 border border-green-400/20 rounded-full hover:bg-green-400/20 hover:border-green-400/40 transition-colors cursor-pointer flex-shrink-0"
+                                    >
+                                      <FileText className="w-2.5 h-2.5" />
+                                      查看详情
+                                    </button>
+                                  )}
+                                </div>
                                 <p className="text-slate-500 text-[10px] mt-0.5 leading-relaxed">
                                   {event.description}
                                 </p>
@@ -309,6 +502,13 @@ export default function About() {
           </div>
         </div>
       </div>
+
+      {/* Credential Detail Dialog */}
+      <CredentialDialog
+        credential={activeCredential}
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+      />
     </section>
   );
 }
