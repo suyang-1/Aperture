@@ -3,6 +3,7 @@
 import { ArrowRight, ArrowDown } from 'lucide-react';
 import { useEffect, useState, useCallback } from 'react';
 import { useParallax } from '@/hooks/use-parallax';
+import MeteorCanvas from '@/components/effects/meteor-canvas';
 
 const floatingCards = [
   { title: 'INTERACTION DESIGN', top: '8%', left: '60%', delay: '0s', depth: 0.3 },
@@ -30,6 +31,9 @@ export default function Hero() {
       onMouseMove={parallax.onMouseMove}
       onMouseLeave={parallax.onMouseLeave}
     >
+      {/* Meteor rain effect - right side only */}
+      <MeteorCanvas />
+
       {/* Background gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#06080f] via-transparent to-[#06080f] pointer-events-none" />
 
