@@ -18,6 +18,8 @@ import {
   Sparkles,
   Briefcase,
   Flame,
+  BookOpen,
+  UserCheck,
 } from 'lucide-react';
 import {
   Dialog,
@@ -72,11 +74,26 @@ const credentials: CredentialDetail[] = [
     fileUrl: '/assets/patent-certificate.pdf',
     fileType: 'pdf',
   },
+  {
+    id: 'scholarship-2024',
+    name: '优秀学生二等奖学金',
+    issuer: '天津仁爱学院',
+    date: '2024年12月（2023-2024学年）',
+    highlights: [
+      '荣誉类型：校级奖学金',
+      '学年：2023-2024学年',
+      '等级：二等奖学金',
+      '颁发机构：天津仁爱学院',
+    ],
+    fileUrl: '/assets/scholarship-certificate.jpg',
+    fileType: 'image',
+  },
 ];
 
 /* ---------- Which timeline events have credentials ---------- */
 const eventCredentialMap: Record<string, string> = {
   '发明专利一项': 'patent-welding',
+  '获"优秀学生二等奖学金"': 'scholarship-2024',
 };
 
 const campusTimeline = [
@@ -124,6 +141,21 @@ const campusTimeline = [
         icon: Mic,
       },
       {
+        title: '获"悦读之星"校园选拔赛三等奖',
+        description: '9月13日 · 2024书香天津·校园大学生阅读活动',
+        icon: BookOpen,
+      },
+      {
+        title: '被聘为创业实践协会"实践部部长"',
+        description: '9月 · 天津仁爱学院 · 任期一年',
+        icon: UserCheck,
+      },
+      {
+        title: '获"青马工程"培训班结业证书',
+        description: '10月 · 机械工程学院第二期',
+        icon: GraduationCap,
+      },
+      {
         title: '加入智交互产教融合创新实验室',
         description: '10月 · 数智传媒与设计艺术学院',
         icon: GraduationCap,
@@ -131,6 +163,11 @@ const campusTimeline = [
       {
         title: '获"优秀学生二等奖学金"',
         description: '12月 · 天津仁爱学院2023-2024学年',
+        icon: Award,
+      },
+      {
+        title: '获第二届职业规划大赛校级三等奖',
+        description: '12月16日 · 天津仁爱学院',
         icon: Award,
       },
     ],
