@@ -16,6 +16,8 @@ import {
   Calendar,
   Building2,
   Sparkles,
+  Briefcase,
+  Flame,
 } from 'lucide-react';
 import {
   Dialog,
@@ -37,6 +39,7 @@ const skills = [
   '主持',
   '创新创业',
   '社团管理',
+  '演讲竞赛',
   'More',
 ];
 
@@ -160,6 +163,38 @@ const campusTimeline = [
         title: '加入网络与信息安全微专业',
         description: '9月 · 辅修',
         icon: ShieldCheck,
+      },
+      {
+        title: '应聘图书馆信息咨询助理馆员',
+        description: '10月27日 · 天津仁爱图书馆 · 为期一年',
+        icon: Briefcase,
+      },
+      {
+        title: '网络安全主题演讲获二等奖',
+        description: '11月 · 智算工程学院"国安强音——奏响网络安全时代华章"',
+        icon: Mic,
+      },
+      {
+        title: '获"社团活动奖""优秀学生干部"荣誉称号',
+        description: '12月 · 天津仁爱学院2024-2025学年校级荣誉',
+        icon: Award,
+      },
+    ],
+  },
+  {
+    year: '2026',
+    events: [
+      {
+        title: '国家安全教育日演讲比赛获一等奖',
+        description:
+          '4月15日 · "筑牢安全防线，激扬青春誓言"第十一个全民国家安全教育日',
+        icon: Trophy,
+      },
+      {
+        title: '大创项目获国家级立项',
+        description:
+          '5月 · 《智宠灵瑞——基于具身智能的适老化情感陪伴机器人》创新训练项目 · 为期一年',
+        icon: Flame,
       },
     ],
   },
