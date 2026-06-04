@@ -128,6 +128,11 @@ const campusTimeline = [
         description: '10月 · 数智传媒与设计艺术学院',
         icon: GraduationCap,
       },
+      {
+        title: '获"优秀学生二等奖学金"',
+        description: '12月 · 天津仁爱学院2023-2024学年',
+        icon: Award,
+      },
     ],
   },
   {
