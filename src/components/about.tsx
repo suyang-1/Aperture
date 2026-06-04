@@ -20,6 +20,9 @@ import {
   Flame,
   BookOpen,
   UserCheck,
+  BrainCircuit,
+  Cpu,
+  Globe,
 } from 'lucide-react';
 import {
   Dialog,
@@ -42,6 +45,10 @@ const skills = [
   '创新创业',
   '社团管理',
   '演讲竞赛',
+  '深度学习',
+  'AI Agent',
+  '提示工程',
+  '服务设计',
   'More',
 ];
 
@@ -88,12 +95,171 @@ const credentials: CredentialDetail[] = [
     fileUrl: '/assets/scholarship-certificate.jpg',
     fileType: 'image',
   },
+  {
+    id: 'google-digital-talent',
+    name: '谷歌数字人才培养计划结业证书',
+    issuer: 'Google谷歌 × 中国大学MOOC',
+    date: '2024年8月31日',
+    highlights: [
+      '课程：谷歌官方出品——海外数字营销系列课程',
+      '以优秀成绩通过最终考核',
+      '证书编号：G20240827006200',
+    ],
+    fileUrl: '/assets/google-digital-talent.jpg',
+    fileType: 'image',
+  },
+  {
+    id: 'english-writing-2024',
+    name: '2024百万同题英语写作大赛优秀作品奖',
+    issuer: '全国高等学校大学外语教学研究会 / 中国高校英语写作教学联盟',
+    date: '2024年6月',
+    highlights: [
+      '奖项：优秀作品奖（Excellent Composition Award）',
+      '赛事：2024 Big Writing Event Under One Topic',
+      '学校：天津仁爱学院',
+    ],
+    fileUrl: '/assets/english-writing-2024.jpg',
+    fileType: 'image',
+  },
+  {
+    id: 'service-design-jam',
+    name: '2025全球服务设计共创节参与证书',
+    issuer: '全球服务设计联盟 / 与贤服务设计 / 天津仁爱学院',
+    date: '2025年2月23日',
+    highlights: [
+      '活动：GLOBAL SERVICE JAM 2025',
+      '作品：《一场物质的轮回演出》',
+      '团队成员：袁苏洋、吴美妮、孙熙然、王慧智、杨寓涵、王乐涵、余坤洋',
+      '指导老师：李春秋、梁芷贤、张寞轩、石丽雯',
+      '证书编号：GSJ-YX-2025011',
+    ],
+    fileUrl: '/assets/service-design-fest.png',
+    fileType: 'image',
+  },
+  {
+    id: 'prompt-engineer',
+    name: 'Prompt Engineer 提示工程师认证',
+    issuer: 'Datawhale × 讯飞星火',
+    date: '2025年3月',
+    highlights: [
+      '认证：具备提示工程相关技能，通过最终考核',
+      '被认定为 Prompt Engineer',
+      '证书编号：DWPE016547',
+      '合作方：讯飞开放平台',
+    ],
+    fileUrl: '/assets/prompt-engineer.png',
+    fileType: 'image',
+  },
+  {
+    id: 'ai-agent-cert',
+    name: 'AI Agent 能力认证证书',
+    issuer: 'Datawhale × 扣子（Coze）',
+    date: '2025年6月5日',
+    highlights: [
+      '活动：Datawhale AI+X高校行"AI+Agent"主题学习',
+      '通过理论考试并完成实践任务',
+      '具备使用AI Agent工具基本知识与能力',
+      '证书编号：DW219-12060103',
+    ],
+    fileUrl: '/assets/coze-cert.png',
+    fileType: 'image',
+  },
+  {
+    id: 'zhiwang-cup-team',
+    name: '第三届"知网杯"天津高校数字素养大赛团队三等奖',
+    issuer: '天津市高等学校图书情报工作委员会 / 同方知网',
+    date: '2025年7月',
+    highlights: [
+      '奖项：团队三等奖',
+      '作品：《基于多模态感知与边缘计算的复杂城市环境无人机自主避障研究现状报告》',
+      '颁发机构：天津高等教育文献信息中心 / 天津理工大学图书馆',
+    ],
+    fileUrl: '/assets/zhiwang-cup-team.png',
+    fileType: 'image',
+  },
+  {
+    id: 'ai-defender',
+    name: '2025全球AI攻防挑战赛·鉴真季 AI守卫者称号',
+    issuer: '中国图象图形学学会 × 蚂蚁集团',
+    date: '2025年',
+    highlights: [
+      '荣誉：AI守卫者称号',
+      '赛事：2025 Global AI Attacks and Defense Challenge · Jianzhen Season',
+      '颁发机构：中国图象图形学学会 / 蚂蚁集团',
+    ],
+    fileUrl: '/assets/ai-defender-title.png',
+    fileType: 'image',
+  },
+  {
+    id: 'nvidia-dl-cert',
+    name: 'NVIDIA 深度学习基础认证',
+    issuer: 'NVIDIA',
+    date: '2025年11月28日',
+    highlights: [
+      '课程：深度学习基础——理论与实践入门',
+      '认证类型：Certificate of Competency',
+      '认证ID：sL661SC9Rh6WmuY3jiJYpw',
+      '签发人：Greg Estes, VP of NVIDIA',
+    ],
+    fileUrl: '/assets/nvidia-dl-cert.pdf',
+    fileType: 'pdf',
+  },
+  {
+    id: 'fuxing-cup-attack',
+    name: '"复兴杯"第五届全国大学生网络安全精英赛·网络攻防赛道',
+    issuer: '国家网络空间安全人才培养基地',
+    date: '2025年11月17日',
+    highlights: [
+      '赛道：网络安全攻防赛道',
+      '成绩：初赛成绩优异，成功晋级复赛',
+      '证书编号：52527734164813',
+    ],
+    fileUrl: '/assets/fuxing-cup-attack.png',
+    fileType: 'image',
+  },
+  {
+    id: 'fuxing-cup-ai',
+    name: '"复兴杯"第五届全国大学生网络安全精英赛·人工智能应用与安全赛道',
+    issuer: '国家网络空间安全人才培养基地',
+    date: '2025年11月17日',
+    highlights: [
+      '赛道：人工智能应用与安全赛道',
+      '成绩：初赛成绩优异，成功晋级复赛',
+      '证书编号：56924141301584',
+    ],
+    fileUrl: '/assets/fuxing-cup-prelim.png',
+    fileType: 'image',
+  },
+  {
+    id: 'datawhale-spring-camp',
+    name: 'Datawhale AI春训营结营证书',
+    issuer: 'Datawhale × 上海科学智能研究院',
+    date: '2026年5月24日',
+    highlights: [
+      '活动：2026 Datawhale AI春训营第一期',
+      '赛道：第四届世界科学智能大赛·电力市场交易赛道：储能电站收益优化',
+      '完成全部学习，授予结营证书',
+      '证书编号：DW306-12060655',
+    ],
+    fileUrl: '/assets/datawhale-spring-camp.png',
+    fileType: 'image',
+  },
 ];
 
 /* ---------- Which timeline events have credentials ---------- */
 const eventCredentialMap: Record<string, string> = {
   '发明专利一项': 'patent-welding',
   '获"优秀学生二等奖学金"': 'scholarship-2024',
+  '获谷歌数字人才培养计划结业证书': 'google-digital-talent',
+  '获百万同题英语写作大赛优秀作品奖': 'english-writing-2024',
+  '参加全球服务设计共创节': 'service-design-jam',
+  '获Prompt Engineer提示工程师认证': 'prompt-engineer',
+  '获AI Agent能力认证': 'ai-agent-cert',
+  '"知网杯"数字素养大赛双项三等奖': 'zhiwang-cup-team',
+  '获全球AI攻防挑战赛AI守卫者称号': 'ai-defender',
+  '获NVIDIA深度学习基础认证': 'nvidia-dl-cert',
+  '"复兴杯"网络安全精英赛晋级复赛': 'fuxing-cup-attack',
+  '获Datawhale AI春训营结营证书': 'datawhale-spring-camp',
 };
 
 const campusTimeline = [
@@ -136,9 +302,19 @@ const campusTimeline = [
         icon: Award,
       },
       {
+        title: '获百万同题英语写作大赛优秀作品奖',
+        description: '6月 · 2024百万同题英语写作大赛 · 全国高等学校大学外语教学研究会',
+        icon: Award,
+      },
+      {
         title: '主持2024届毕业生晚会',
         description: '6月 · 数智传媒与设计艺术学院"艺起向未来"',
         icon: Mic,
+      },
+      {
+        title: '获谷歌数字人才培养计划结业证书',
+        description: '8月 · Google × 中国大学MOOC · 海外数字营销系列课程',
+        icon: Globe,
       },
       {
         title: '获"悦读之星"校园选拔赛三等奖',
@@ -176,6 +352,21 @@ const campusTimeline = [
     year: '2025',
     events: [
       {
+        title: '参加全球服务设计共创节',
+        description: '2月 · GLOBAL SERVICE JAM · 作品《一场物质的轮回演出》',
+        icon: Globe,
+      },
+      {
+        title: '获Prompt Engineer提示工程师认证',
+        description: '3月 · Datawhale × 讯飞星火',
+        icon: BrainCircuit,
+      },
+      {
+        title: '获AI Agent能力认证',
+        description: '6月 · Datawhale × 扣子（Coze）',
+        icon: Cpu,
+      },
+      {
         title: '"知网杯"数字素养大赛双项三等奖',
         description: '7月 · 第三届天津高校数字素养大赛 · 个人三等奖 + 团队三等奖',
         icon: Trophy,
@@ -184,12 +375,6 @@ const campusTimeline = [
         title: '中国国际大学生创新大赛天津赛区铜奖',
         description: '7月 · 第一负责人获铜奖一项，成员身份获铜奖一项',
         icon: Award,
-      },
-      {
-        title: '发明专利一项',
-        description:
-          '10月 · 一种配电柜柜体的焊接装置 · ZL 2025 1 1071601.6',
-        icon: FileText,
       },
       {
         title: '担任创业实践协会社团主席',
@@ -210,6 +395,27 @@ const campusTimeline = [
         title: '应聘图书馆信息咨询助理馆员',
         description: '10月27日 · 天津仁爱图书馆 · 为期一年',
         icon: Briefcase,
+      },
+      {
+        title: '发明专利一项',
+        description:
+          '10月 · 一种配电柜柜体的焊接装置 · ZL 2025 1 1071601.6',
+        icon: FileText,
+      },
+      {
+        title: '获全球AI攻防挑战赛AI守卫者称号',
+        description: '11月 · 2025全球AI攻防挑战赛·鉴真季 · 中国图象图形学学会 × 蚂蚁集团',
+        icon: ShieldCheck,
+      },
+      {
+        title: '获NVIDIA深度学习基础认证',
+        description: '11月28日 · 深度学习基础——理论与实践入门',
+        icon: BrainCircuit,
+      },
+      {
+        title: '"复兴杯"网络安全精英赛晋级复赛',
+        description: '11月17日 · 网络攻防赛道 + 人工智能应用与安全赛道 · 双赛道晋级',
+        icon: ShieldCheck,
       },
       {
         title: '网络安全主题演讲获二等奖',
@@ -237,6 +443,11 @@ const campusTimeline = [
         description:
           '5月 · 《智宠灵瑞——基于具身智能的适老化情感陪伴机器人》创新训练项目 · 为期一年',
         icon: Flame,
+      },
+      {
+        title: '获Datawhale AI春训营结营证书',
+        description: '5月24日 · 第四届世界科学智能大赛·电力市场交易赛道：储能电站收益优化',
+        icon: BrainCircuit,
       },
     ],
   },
@@ -410,7 +621,7 @@ export default function About() {
               </div>
             </div>
             <p className="text-slate-300 text-xs leading-relaxed mb-3">
-              天津仁爱学院大三在读，主修智能交互设计专业，2025年加入网络与信息安全微专业。持有发明专利一项，担任创业实践协会社团主席及智交互产教融合创新实验室学生负责人。致力于将交互设计思维与信息安全意识相融合，探索安全可信的智能交互体验。
+              天津仁爱学院大三在读，主修智能交互设计专业，2025年加入网络与信息安全微专业。持有发明专利一项，获NVIDIA深度学习认证、Datawhale Prompt Engineer & AI Agent认证。担任创业实践协会社团主席及智交互产教融合创新实验室学生负责人。致力于将交互设计思维与信息安全意识相融合，探索安全可信的智能交互体验。
             </p>
 
             {/* Highlight badges */}
