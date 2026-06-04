@@ -96,6 +96,11 @@ const campusTimeline = [
         icon: Mic,
       },
       {
+        title: '加入创业实践协会',
+        description: '10月 · 天津仁爱学院',
+        icon: Users,
+      },
+      {
         title: '主持首届大学生职业规划大赛',
         description: '12月 · 天津仁爱学院',
         icon: Mic,
@@ -114,6 +119,11 @@ const campusTimeline = [
         title: '主持2024届毕业生晚会',
         description: '6月 · 数智传媒与设计艺术学院"艺起向未来"',
         icon: Mic,
+      },
+      {
+        title: '加入智交互产教融合创新实验室',
+        description: '10月 · 数智传媒与设计艺术学院',
+        icon: GraduationCap,
       },
     ],
   },
