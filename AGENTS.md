@@ -30,6 +30,7 @@ ZHAO YI 个人作品集网站 - 全栈设计工程师个人展示页
 │   │   ├── projects.tsx    # 项目展示（2x2卡片网格）
 │   │   ├── process.tsx     # 工作流程（6步骤+引用）
 │   │   ├── about.tsx       # 关于与联系（3列布局）
+│   │   ├── hobbies.tsx     # 兴趣爱好（篆刻与写字）
 │   │   └── footer.tsx      # 页脚
 │   ├── hooks/              # 自定义 Hooks
 │   └── lib/                # 工具库
@@ -94,5 +95,6 @@ ZHAO YI 个人作品集网站 - 全栈设计工程师个人展示页
 | 修改能力列表 | `src/components/capabilities.tsx` |
 | 修改工作流程 | `src/components/process.tsx` |
 | 修改导航链接 | `src/components/navbar.tsx` |
+| 修改兴趣爱好 | `src/components/hobbies.tsx` |
 | 修改配色方案 | `src/app/globals.css` + `DESIGN.md` |
 | 添加新区域 | 创建新组件 + 在 `page.tsx` 中引入 |

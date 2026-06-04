@@ -63,6 +63,7 @@ interface CredentialDetail {
   highlights: string[];
   fileUrl?: string;
   fileType?: 'pdf' | 'image';
+  extraLinks?: { label: string; url: string }[];
 }
 
 const credentials: CredentialDetail[] = [
@@ -73,15 +74,27 @@ const credentials: CredentialDetail[] = [
     date: '2025年10月31日（授权公告日）',
     highlights: [
       '专利类型：发明专利',
-      '专利号：ZL 2025 1 1071601.6',
+      '申请号：202511071601.6',
+      '申请公布号：CN 120551632 A',
       '授权公告号：CN 120551632 B',
       '证书号：第8428532号',
-      '专利权人：天津仁爱学院',
+      '专利权人：天津仁爱学院（天津市静海区团泊新城博学苑）',
       '发明人：袁铁彪、葛军超、刘金剑、于洋洋、袁苏洋、孙熙然、储青海',
       '专利申请日：2025年08月01日',
+      '申请公布日：2025年08月29日',
+      '技术领域：焊接技术（B23K 31/02, B23K 37/003, B23K 37/00）',
+      '核心创新：自动焊接+焊后快速冷却+自动送料+磁性限位支撑一体化装置',
+      '三大技术效果：',
+      '  1. 输送带+焊接架实现柜体自动焊接与焊后气冷降温，提高生产效率',
+      '  2. 存储仓+引导板+电动气缸控制挡板，实现柜板自动投送送料',
+      '  3. 第一/第二磁块磁性吸附限位支撑，提高焊接精度与可调节性',
+      '权利要求：10项，说明书5页，附图12页',
     ],
     fileUrl: '/assets/patent-certificate.pdf',
     fileType: 'pdf',
+    extraLinks: [
+      { label: '查看专利全文（含说明书附图）', url: '/assets/patent-detail.pdf' },
+    ],
   },
   {
     id: 'scholarship-2024',
@@ -579,6 +592,24 @@ function CredentialDialog({
               <ExternalLink className="w-3.5 h-3.5" />
               查看原始{credential.fileType === 'pdf' ? 'PDF' : '图片'}文件
             </a>
+          )}
+
+          {/* Extra links */}
+          {credential.extraLinks && credential.extraLinks.length > 0 && (
+            <div className="flex flex-col gap-2">
+              {credential.extraLinks.map((link) => (
+                <a
+                  key={link.url}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-3 py-2 text-xs text-cyber-blue bg-cyber-blue/10 border border-cyber-blue/20 rounded-lg hover:bg-cyber-blue/20 hover:border-cyber-blue/40 transition-colors"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  {link.label}
+                </a>
+              ))}
+            </div>
           )}
         </div>
       </DialogContent>
