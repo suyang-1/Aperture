@@ -23,30 +23,29 @@ interface SkillItem {
   name: string;
   nameCn: string;
   icon: React.ElementType;
-  level: number; // 0-100
   category: 'design' | '3d' | 'equipment' | 'dev';
 }
 
 const skills: SkillItem[] = [
   // 设计软件
-  { name: 'Photoshop', nameCn: '图像处理与合成', icon: Palette, level: 85, category: 'design' },
-  { name: 'Illustrator', nameCn: '矢量图形设计', icon: PenTool, level: 80, category: 'design' },
-  { name: 'Figma', nameCn: '界面与原型设计', icon: Figma, level: 75, category: 'design' },
-  { name: 'After Effects', nameCn: '动效与视觉合成', icon: Layers, level: 65, category: 'design' },
+  { name: 'Photoshop', nameCn: '图像处理与合成', icon: Palette, category: 'design' },
+  { name: 'Illustrator', nameCn: '矢量图形设计', icon: PenTool, category: 'design' },
+  { name: 'Figma', nameCn: '界面与原型设计', icon: Figma, category: 'design' },
+  { name: 'After Effects', nameCn: '动效与视觉合成', icon: Layers, category: 'design' },
 
   // 3D 建模
-  { name: 'Rhino', nameCn: 'NURBS 曲面建模', icon: Box, level: 78, category: '3d' },
-  { name: 'Blender', nameCn: '三维渲染与动画', icon: Monitor, level: 55, category: '3d' },
+  { name: 'Rhino', nameCn: 'NURBS 曲面建模', icon: Box, category: '3d' },
+  { name: 'Blender', nameCn: '三维渲染与动画', icon: Monitor, category: '3d' },
 
   // 专业设备
-  { name: '手持三维扫描仪', nameCn: '点云采集与逆向工程', icon: ScanLine, level: 82, category: 'equipment' },
-  { name: '眼动仪', nameCn: 'Tobii 视觉追踪实验', icon: Eye, level: 75, category: 'equipment' },
-  { name: '脑电帽', nameCn: 'EEG 脑电信号采集', icon: Brain, level: 70, category: 'equipment' },
+  { name: '手持三维扫描仪', nameCn: '点云采集与逆向工程', icon: ScanLine, category: 'equipment' },
+  { name: '眼动仪', nameCn: 'Tobii 视觉追踪实验', icon: Eye, category: 'equipment' },
+  { name: '脑电帽', nameCn: 'EEG 脑电信号采集', icon: Brain, category: 'equipment' },
 
   // 开发工具
-  { name: 'VS Code', nameCn: '全栈开发环境', icon: Code2, level: 88, category: 'dev' },
-  { name: 'Arduino', nameCn: '硬件原型与交互', icon: Cpu, level: 72, category: 'dev' },
-  { name: 'Unity', nameCn: '交互原型与 XR 开发', icon: Camera, level: 60, category: 'dev' },
+  { name: 'VS Code', nameCn: '全栈开发环境', icon: Code2, category: 'dev' },
+  { name: 'Arduino', nameCn: '硬件原型与交互', icon: Cpu, category: 'dev' },
+  { name: 'Unity', nameCn: '交互原型与 XR 开发', icon: Camera, category: 'dev' },
 ];
 
 const categoryMeta: Record<string, { label: string; labelCn: string; color: string }> = {
@@ -81,26 +80,6 @@ function SpotlightCard({
         style={{ background: spotlightStyle }}
       />
       {children}
-    </div>
-  );
-}
-
-/* ---------- SkillBar ---------- */
-
-function SkillBar({ level, delay }: { level: number; delay: number }) {
-  const [animated, setAnimated] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setAnimated(true), delay);
-    return () => clearTimeout(timer);
-  }, [delay]);
-
-  return (
-    <div className="h-1 rounded-full bg-white/5 overflow-hidden">
-      <div
-        className="h-full rounded-full bg-gradient-to-r from-cyber-blue to-cyber-blue/60 transition-all duration-1000 ease-out"
-        style={{ width: animated ? `${level}%` : '0%' }}
-      />
     </div>
   );
 }
@@ -142,11 +121,7 @@ function SkillCard({
           </h4>
           <p className="text-slate-500 text-[11px] mt-0.5 truncate">{skill.nameCn}</p>
 
-          {/* Level bar */}
           <div className="mt-2.5">
-            <SkillBar level={skill.level} delay={300 + index * 80} />
-          </div>
-          <div className="mt-1">
             <span className="text-[10px] text-slate-600 font-mono">{meta.labelCn}</span>
           </div>
         </div>
