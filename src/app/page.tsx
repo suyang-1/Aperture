@@ -4,6 +4,7 @@ import Capabilities from '@/components/capabilities';
 import Projects from '@/components/projects';
 import Process from '@/components/process';
 import About from '@/components/about';
+import Skills from '@/components/skills';
 import Hobbies from '@/components/hobbies';
 import Footer from '@/components/footer';
 import CodeRainCanvas from '@/components/effects/code-rain-canvas';
@@ -18,6 +19,7 @@ export default function Home() {
       <Capabilities />
       <Projects />
       <Process />
+      <Skills />
       <About />
       <Hobbies />
       <Footer />
