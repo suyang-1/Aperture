@@ -146,9 +146,8 @@ function SkillCard({
           <div className="mt-2.5">
             <SkillBar level={skill.level} delay={300 + index * 80} />
           </div>
-          <div className="flex justify-between mt-1">
+          <div className="mt-1">
             <span className="text-[10px] text-slate-600 font-mono">{meta.labelCn}</span>
-            <span className="text-[10px] text-cyber-blue/60 font-mono">{skill.level}%</span>
           </div>
         </div>
       </div>
