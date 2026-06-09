@@ -14,6 +14,10 @@ import {
   Camera,
   Layers,
   Palette,
+  Mic,
+  Globe,
+  MessageSquare,
+  Award,
 } from 'lucide-react';
 import { useMouseSpotlight } from '@/hooks/use-mouse-spotlight';
 
@@ -54,6 +58,104 @@ const categoryMeta: Record<string, { label: string; labelCn: string; color: stri
   equipment: { label: 'SPECIALIZED EQUIPMENT', labelCn: '专业设备', color: 'from-emerald-400/80 to-teal-500/60' },
   dev: { label: 'DEV & PROTOTYPING', labelCn: '开发与原型', color: 'from-amber-400/80 to-orange-500/60' },
 };
+
+/* ---------- Certifications ---------- */
+
+interface CertItem {
+  name: string;
+  nameEn: string;
+  level: string;
+  issuer: string;
+  icon: React.ElementType;
+  color: string;
+}
+
+const certifications: CertItem[] = [
+  {
+    name: '普通话水平测试',
+    nameEn: 'Mandarin Proficiency Test',
+    level: '一级乙等',
+    issuer: '国家语言文字工作委员会',
+    icon: Mic,
+    color: 'from-rose-400/80 to-pink-500/60',
+  },
+  {
+    name: '国际人才英语考试',
+    nameEn: 'English Test for International Communication',
+    level: '初级',
+    issuer: '中国外语测评中心',
+    icon: Globe,
+    color: 'from-violet-400/80 to-purple-500/60',
+  },
+  {
+    name: '大学英语四级（笔试）',
+    nameEn: 'CET-4 Written',
+    level: '合格',
+    issuer: '教育部教育考试院',
+    icon: MessageSquare,
+    color: 'from-cyan-400/80 to-sky-500/60',
+  },
+  {
+    name: '大学英语四级（口试）',
+    nameEn: 'CET-4 Spoken',
+    level: '合格',
+    issuer: '教育部教育考试院',
+    icon: MessageSquare,
+    color: 'from-emerald-400/80 to-teal-500/60',
+  },
+];
+
+/* ---------- CertCard ---------- */
+
+function CertCard({
+  cert,
+  index,
+  isVisible,
+}: {
+  cert: CertItem;
+  index: number;
+  isVisible: boolean;
+}) {
+  const Icon = cert.icon;
+
+  return (
+    <SpotlightCard
+      className={`group relative p-5 bg-[#0d1117] border border-cyber-blue-dim rounded-xl hover:border-cyber-blue/40 hover:bg-[#131a24] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_24px_rgba(0,212,255,0.06)] overflow-hidden ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+      }`}
+      style={{ transitionDelay: `${index * 80}ms` }}
+    >
+      {/* Top accent line */}
+      <div className={`absolute top-0 left-4 right-4 h-[2px] rounded-full bg-gradient-to-r ${cert.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+
+      <div className="flex items-start gap-4">
+        {/* Icon */}
+        <div className="shrink-0 w-11 h-11 rounded-lg bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center group-hover:bg-cyber-blue/15 group-hover:border-cyber-blue/40 transition-all">
+          <Icon className="w-5 h-5 text-cyber-blue" />
+        </div>
+
+        {/* Info */}
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <h4 className="text-white font-bold text-sm tracking-wide">
+              {cert.name}
+            </h4>
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyber-blue/15 text-cyber-blue border border-cyber-blue/25 font-medium whitespace-nowrap">
+              {cert.level}
+            </span>
+          </div>
+          <p className="text-slate-600 text-[10px] mt-0.5 font-mono tracking-wide">
+            {cert.nameEn}
+          </p>
+          <div className="flex items-center gap-1.5 mt-2">
+            <Award className="w-3 h-3 text-slate-600" />
+            <span className="text-slate-500 text-[11px]">{cert.issuer}</span>
+          </div>
+        </div>
+      </div>
+    </SpotlightCard>
+  );
+}
 
 /* ---------- SpotlightCard ---------- */
 
@@ -232,6 +334,42 @@ export default function Skills() {
               <span className="text-slate-500 text-xs">{item.label}</span>
             </div>
           ))}
+        </div>
+
+        {/* Divider */}
+        <div className="mt-16 flex items-center gap-4">
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-cyber-blue/20 to-transparent" />
+          <Award className="w-4 h-4 text-cyber-blue/40" />
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-cyber-blue/20 to-transparent" />
+        </div>
+
+        {/* Certifications sub-section */}
+        <div className="mt-12">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-xs tracking-[0.2em] text-slate-400 font-medium">
+              SKILL CERTIFICATIONS
+            </span>
+            <span className="text-xs text-slate-600">—</span>
+            <span className="text-xs text-slate-500">技能资格认证</span>
+            <div className="flex-1 h-px bg-white/5" />
+            <span className="text-[10px] text-slate-600 font-mono">
+              {certifications.length}项
+            </span>
+          </div>
+          <p className="text-slate-500 text-sm mb-8">
+            语言能力与专业资格认证，跨领域沟通无障碍
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {certifications.map((cert, i) => (
+              <CertCard
+                key={cert.name}
+                cert={cert}
+                index={i}
+                isVisible={isVisible}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
