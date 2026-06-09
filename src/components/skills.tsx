@@ -98,7 +98,7 @@ const certifications: CertItem[] = [
   {
     name: '大学英语四级（口试）',
     nameEn: 'CET-4 Spoken',
-    level: '合格',
+    level: '良好',
     issuer: '教育部教育考试院',
     icon: MessageSquare,
     color: 'from-emerald-400/80 to-teal-500/60',
