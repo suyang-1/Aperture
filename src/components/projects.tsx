@@ -497,6 +497,169 @@ function HackathonCard({ isVisible }: { isVisible: boolean }) {
   );
 }
 
+/* ---------- Edioffer Product Card ---------- */
+const ediofferInfo = {
+  name: '鹅滴offer',
+  slogan: '遇见更好的工作',
+  url: 'https://edioffer.coze.site',
+  description:
+    '全方位求职智能引擎，提供简历分析、能力画像构建、岗位匹配、模拟面试与职业导师等一站式AI求职服务。',
+  features: [
+    { icon: FileText, label: '简历分析', desc: 'AI智能解析简历，识别优劣势' },
+    { icon: Sparkles, label: '画像构建', desc: '构建个人能力画像，精准定位' },
+    { icon: Cpu, label: '岗位匹配', desc: '智能匹配推荐，高效投递' },
+    { icon: Shield, label: '模拟面试', desc: 'AI模拟面试，提升表现力' },
+  ],
+  homeImg: '/assets/edioffer-home.jpg',
+  ipImg: '/assets/edioffer-ip.jpg',
+  logoImg: '/assets/edioffer-logo.png',
+};
+
+function EdiofferCard({ isVisible }: { isVisible: boolean }) {
+  const [expanded, setExpanded] = useState(false);
+  const { ref, onMouseMove, onMouseLeave, spotlightStyle } =
+    useMouseSpotlight();
+
+  return (
+    <div
+      ref={ref}
+      className={`group relative overflow-hidden rounded-xl border border-cyber-blue-dim bg-[#0d1117] hover:border-cyber-blue/40 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,212,255,0.1)] ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+      }`}
+      style={{ transitionDelay: '200ms' }}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+    >
+      {/* Spotlight */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+        style={{ background: spotlightStyle }}
+      />
+
+      {/* Header: Product homepage screenshot */}
+      <div className="relative overflow-hidden">
+        <div className="w-full bg-gradient-to-br from-sky-900/30 to-cyan-900/10">
+          <img
+            src={ediofferInfo.homeImg}
+            alt="鹅滴offer 产品首页"
+            className="w-full h-auto object-contain max-h-72"
+          />
+        </div>
+        {/* Badge */}
+        <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-1 bg-sky-500/15 border border-sky-500/25 rounded-full backdrop-blur-sm">
+          <Sparkles className="w-3 h-3 text-sky-400/80" />
+          <span className="text-[9px] tracking-wider text-sky-400/90 font-semibold">
+            AI PRODUCT
+          </span>
+        </div>
+        {/* Visit link */}
+        <a
+          href={ediofferInfo.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-[#0d1117]/70 rounded-full p-1.5 hover:bg-cyber-blue/20"
+        >
+          <ExternalLink className="w-4 h-4 text-cyber-blue" />
+        </a>
+      </div>
+
+      {/* Content */}
+      <div className="p-5">
+        {/* Logo + Name row */}
+        <div className="flex items-center gap-3 mb-3">
+          <div className="w-10 h-10 rounded-xl overflow-hidden bg-white/5 border border-sky-500/15 flex-shrink-0">
+            <img
+              src={ediofferInfo.logoImg}
+              alt="鹅滴offer LOGO"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <div>
+            <h3 className="text-white font-bold text-base group-hover:text-cyber-blue transition-colors leading-tight">
+              {ediofferInfo.name}
+            </h3>
+            <p className="text-slate-500 text-[11px]">{ediofferInfo.slogan}</p>
+          </div>
+        </div>
+
+        {/* Description */}
+        <p className="text-slate-400 text-xs leading-relaxed mb-3">
+          {ediofferInfo.description}
+        </p>
+
+        {/* Feature highlights */}
+        <div className="grid grid-cols-2 gap-2 mb-3">
+          {ediofferInfo.features.map((feat) => {
+            const Icon = feat.icon;
+            return (
+              <div
+                key={feat.label}
+                className="flex items-start gap-1.5 px-2 py-1.5 bg-sky-500/5 border border-sky-500/8 rounded-lg"
+              >
+                <Icon className="w-3 h-3 text-sky-400/70 flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-[10px] text-sky-400/90 font-semibold block leading-tight">
+                    {feat.label}
+                  </span>
+                  <span className="text-[9px] text-slate-500 leading-relaxed">
+                    {feat.desc}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Visit button */}
+        <a
+          href={ediofferInfo.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-4 py-2 text-xs text-cyber-blue bg-cyber-blue/10 border border-cyber-blue/20 rounded-lg hover:bg-cyber-blue/20 hover:border-cyber-blue/40 transition-colors font-medium"
+        >
+          <ExternalLink className="w-3.5 h-3.5" />
+          访问产品
+        </a>
+
+        {/* Expand toggle for IP image */}
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="flex items-center gap-1.5 text-[11px] text-cyber-blue/70 hover:text-cyber-blue transition-colors mt-3 ml-1"
+        >
+          <ChevronDown
+            className={`w-3.5 h-3.5 transition-transform duration-300 ${
+              expanded ? 'rotate-180' : ''
+            }`}
+          />
+          {expanded ? '收起' : '查看产品IP形象'}
+        </button>
+
+        {/* Expanded: IP image */}
+        <div
+          className="overflow-hidden transition-all duration-500 ease-out"
+          style={{
+            maxHeight: expanded ? '500px' : '0px',
+            opacity: expanded ? 1 : 0,
+          }}
+        >
+          <div className="pt-3">
+            <div className="rounded-lg overflow-hidden bg-gradient-to-br from-sky-900/20 to-cyan-900/5 border border-sky-500/10">
+              <img
+                src={ediofferInfo.ipImg}
+                alt="鹅滴offer IP形象"
+                className="w-full h-auto object-contain max-h-80"
+              />
+            </div>
+            <p className="text-[10px] text-slate-500 mt-2 text-center">
+              「OFFER捕手」— 鹅滴offer 品牌IP形象
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ---------- Main Component ---------- */
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -552,6 +715,9 @@ export default function Projects() {
 
           {/* Hackathon card */}
           <HackathonCard isVisible={isVisible} />
+
+          {/* Edioffer product card */}
+          <EdiofferCard isVisible={isVisible} />
 
           {/* Other project cards */}
           {projects.map((project, i) => (
