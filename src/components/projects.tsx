@@ -503,7 +503,7 @@ const ediofferInfo = {
   slogan: '遇见更好的工作',
   url: 'https://edioffer.coze.site',
   description:
-    '全方位求职智能引擎，提供简历分析、能力画像构建、岗位匹配、模拟面试与职业导师等一站式AI求职服务。',
+    '2026年5-6月腾讯AI-HR培训生线上实战营最终作业Demo。全方位求职智能引擎，提供简历分析、能力画像构建、岗位匹配、模拟面试与职业导师等一站式AI求职服务。',
   features: [
     { icon: FileText, label: '简历分析', desc: 'AI智能解析简历，识别优劣势' },
     { icon: Sparkles, label: '画像构建', desc: '构建个人能力画像，精准定位' },
@@ -586,6 +586,13 @@ function EdiofferCard({ isVisible }: { isVisible: boolean }) {
         <p className="text-slate-400 text-xs leading-relaxed mb-3">
           {ediofferInfo.description}
         </p>
+
+        {/* Origin badge */}
+        <div className="flex items-center gap-1.5 px-2.5 py-1.5 bg-sky-500/8 border border-sky-500/15 rounded-lg mb-3">
+          <span className="text-[10px] text-sky-400/90 font-semibold tracking-wide">腾讯AI-HR培训生线上实战营</span>
+          <span className="text-[9px] text-slate-500">|</span>
+          <span className="text-[10px] text-slate-400">2026.05-06 最终作业Demo</span>
+        </div>
 
         {/* Feature highlights */}
         <div className="grid grid-cols-2 gap-2 mb-3">
