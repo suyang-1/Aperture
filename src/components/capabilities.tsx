@@ -98,7 +98,7 @@ export default function Capabilities() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-24 bg-[#06080f]">
+    <section id="capabilities" ref={sectionRef} className="relative py-24 bg-[#06080f]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="flex items-center gap-3 mb-4">
