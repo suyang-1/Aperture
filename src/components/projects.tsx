@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   ArrowUpRight,
   FileText,
@@ -181,7 +181,7 @@ function PatentCard({ isVisible }: { isVisible: boolean }) {
         {/* Expandable: full details */}
         <button
           type="button"
-          onClick={useCallback(() => setExpanded((v) => !v), [])}
+          onClick={() => setExpanded((v) => !v)}
           className="flex items-center gap-1.5 text-[10px] text-slate-500 hover:text-cyber-blue transition-colors cursor-pointer mb-2"
         >
           <ChevronDown

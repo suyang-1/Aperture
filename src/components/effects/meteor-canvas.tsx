@@ -143,8 +143,9 @@ export default function MeteorCanvas() {
 
     // Observe hero visibility
     const heroSection = document.getElementById('home');
+    let observer: IntersectionObserver | null = null;
     if (heroSection) {
-      const observer = new IntersectionObserver(
+      observer = new IntersectionObserver(
         ([entry]) => {
           heroVisibleRef.current = entry.isIntersecting;
           setCanvasOpacity(entry.isIntersecting ? 1 : 0);
@@ -157,6 +158,7 @@ export default function MeteorCanvas() {
     return () => {
       cancelAnimationFrame(animRef.current);
       window.removeEventListener('resize', resize);
+      if (observer) observer.disconnect();
     };
   }, [createMeteor, perf]);
 
