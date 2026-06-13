@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { PenTool, Stamp, Sparkles, ChevronRight } from 'lucide-react';
+import { PenTool, Stamp, Sparkles, ChevronRight, Zap, Disc3 } from 'lucide-react';
 import { useMouseSpotlight } from '@/hooks/use-mouse-spotlight';
 
 const hobbyItems = [
@@ -36,6 +36,38 @@ const hobbyItems = [
     ],
     accent: 'cyan',
     tags: ['楷书筑基', '行书隶书', '临池不辍', '书为心画'],
+  },
+  {
+    id: 'badminton',
+    title: '羽毛球',
+    subtitle: 'BADMINTON',
+    icon: Zap,
+    description:
+      '挥拍间的速度与判断，是身体与思维的双重博弈。羽毛球的乐趣在于瞬息万变的节奏切换——一个网前的搓放，一记后场的高远，每一拍都是当下的全神贯注。',
+    details: [
+      '业余水平爱好者，享受双打配合的默契',
+      '擅长后场杀球与网前小球的衔接',
+      '注重步法移动与体能储备',
+      '以球会友，在挥洒汗水中释放压力',
+    ],
+    accent: 'cyber-blue',
+    tags: ['双打配合', '杀球扣压', '步法移动', '挥洒汗水'],
+  },
+  {
+    id: 'table-tennis',
+    title: '乒乓球',
+    subtitle: 'TABLE TENNIS',
+    icon: Disc3,
+    description:
+      '在方寸球台间，胜负往往决定于毫秒之间的旋转判断。乒乓球考验的是快速反应、手感细腻与战术博弈——既需要灵动的手腕，也需要冷静的头脑。',
+    details: [
+      '以右手横拍为主，正反手均能进攻',
+      '擅长弧圈球与快攻结合的打法',
+      '注重旋转的判断与制造',
+      '在快速对抗中训练专注力与决断力',
+    ],
+    accent: 'cyan',
+    tags: ['横拍进攻', '弧圈快攻', '旋转博弈', '专注决断'],
   },
 ];
 
@@ -203,7 +235,7 @@ export default function Hobbies() {
         </p>
 
         {/* Hobby Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {hobbyItems.map((hobby, i) => (
             <HobbyCard
               key={hobby.id}
