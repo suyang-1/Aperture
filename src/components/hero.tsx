@@ -75,7 +75,7 @@ export default function Hero() {
               <br />
               设计
               <br />
-              <span className="text-glow text-cyber-blue">& 信息安全</span>
+              <span className="text-glow text-cyber-blue">& 网络与信息安全</span>
             </h1>
 
             {/* Subtitle */}
