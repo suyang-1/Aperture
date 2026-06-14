@@ -964,24 +964,48 @@ export default function About() {
               })}
             </div>
 
-            {/* WeChat QR Code */}
-            <div className="mt-6 flex items-center gap-4">
-              <div className="w-20 h-20 rounded-lg overflow-hidden border border-cyber-blue-dim flex-shrink-0 bg-white">
-                <img
-                  src="/wechat-qr.jpg"
-                  alt="微信二维码"
-                  width={80}
-                  height={80}
-                  className="w-full h-full object-cover"
-                />
+            {/* QR Codes — 微信 + 公众号 */}
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              {/* WeChat QR */}
+              <div className="rounded-lg border border-cyber-blue-dim bg-[#0d1117] p-3 flex flex-col items-center gap-2 hover:border-cyber-blue/40 transition-colors">
+                <div className="w-full aspect-square rounded overflow-hidden bg-white">
+                  <img
+                    src="/wechat-qr.jpg"
+                    alt="微信二维码"
+                    width={120}
+                    height={120}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="text-center">
+                  <p className="text-cyber-blue text-[10px] tracking-wider font-semibold">
+                    扫码加微信
+                  </p>
+                  <p className="text-slate-500 text-[10px] mt-0.5">
+                    MrYSY2005
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="text-slate-500 text-[10px] tracking-wider">
-                  扫码添加微信
-                </p>
-                <p className="text-slate-600 text-[10px] mt-1">
-                  WeChat: MrYSY2005
-                </p>
+
+              {/* WeChat MP QR */}
+              <div className="rounded-lg border border-cyber-blue-dim bg-[#0d1117] p-3 flex flex-col items-center gap-2 hover:border-cyber-blue/40 transition-colors">
+                <div className="w-full aspect-square rounded overflow-hidden bg-white">
+                  <img
+                    src="/assets/wechat-mp-qr.jpg"
+                    alt="公众号二维码"
+                    width={120}
+                    height={120}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="text-center">
+                  <p className="text-cyber-blue text-[10px] tracking-wider font-semibold">
+                    关注公众号
+                  </p>
+                  <p className="text-slate-500 text-[10px] mt-0.5">
+                    酥羊九言
+                  </p>
+                </div>
               </div>
             </div>
           </div>
