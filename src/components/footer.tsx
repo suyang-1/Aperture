@@ -25,9 +25,12 @@ export default function Footer() {
               <Linkedin className="w-4 h-4" />
             </a>
             <a
-              href="#"
+              href="https://github.com/suyang-1"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-slate-600 hover:text-cyber-blue transition-colors"
-              aria-label="GitHub"
+              aria-label="GitHub @suyang-1"
+              title="GitHub @suyang-1"
             >
               <Github className="w-4 h-4" />
             </a>

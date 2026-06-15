@@ -143,20 +143,18 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Center element - mascot with hover wiggle */}
+              {/* Center element - personal logo with hover wiggle */}
               <div
-                className={`absolute inset-20 rounded-full bg-gradient-to-br from-cyber-blue/10 to-transparent flex items-center justify-center glow-blue cursor-pointer transition-transform duration-300 ${mascotHovered ? 'animate-mascot-wiggle' : ''}`}
+                className={`absolute inset-16 rounded-full bg-gradient-to-br from-cyber-blue/10 to-transparent flex items-center justify-center glow-blue cursor-pointer transition-transform duration-300 ${mascotHovered ? 'animate-mascot-wiggle' : ''}`}
                 onMouseEnter={handleMascotEnter}
                 onMouseLeave={handleMascotLeave}
               >
-                <div className="text-center">
-                  <div className={`text-5xl font-black text-cyber-blue/80 text-glow transition-all duration-300 ${mascotHovered ? 'scale-110' : 'scale-100'}`}>
-                    Y
-                  </div>
-                  <div className="text-[8px] tracking-[0.3em] text-slate-500 mt-1">
-                    YUAN SUYANG
-                  </div>
-                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/assets/logo.png"
+                  alt="影溯渊 logo"
+                  className={`w-full h-full object-contain p-3 transition-transform duration-300 drop-shadow-[0_0_18px_rgba(0,212,255,0.45)] ${mascotHovered ? 'scale-110' : 'scale-100'}`}
+                />
               </div>
 
               {/* Floating tech cards with parallax */}
