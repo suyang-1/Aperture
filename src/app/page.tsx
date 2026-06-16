@@ -7,6 +7,7 @@ import About from '@/components/about';
 import Skills from '@/components/skills';
 import Hobbies from '@/components/hobbies';
 import Footer from '@/components/footer';
+import FloatingMascot from '@/components/floating-mascot';
 import CodeRainCanvas from '@/components/effects/code-rain-canvas';
 import ParticleTrail from '@/components/effects/particle-trail';
 
@@ -24,6 +25,7 @@ export default function Home() {
       <Hobbies />
       <Footer />
       <ParticleTrail />
+      <FloatingMascot />
     </div>
   );
 }
