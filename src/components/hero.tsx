@@ -27,7 +27,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden bg-stars bg-grid"
+      className="relative min-h-screen w-full flex flex-col items-stretch overflow-hidden bg-[#06080f] bg-stars bg-grid"
       onMouseMove={parallax.onMouseMove}
       onMouseLeave={parallax.onMouseLeave}
     >
@@ -43,14 +43,15 @@ export default function Hero() {
         style={{ transform: parallax.offset(0.3) }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-24 pb-16">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Text Content */}
-          <div
-            className={`space-y-8 transition-all duration-1000 ${
-              mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          >
+      <div className="relative flex flex-1 w-full">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col justify-center pt-24 pb-12">
+          <div className="flex flex-col lg:flex-row items-stretch gap-12">
+            {/* Left: Text Content */}
+            <div
+              className={`flex-1 flex flex-col justify-center space-y-8 transition-all duration-1000 ${
+                mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
             {/* Section number */}
             <div className="flex items-center gap-3">
               <span className="text-slate-600 text-sm font-mono">01</span>
@@ -107,7 +108,7 @@ export default function Hero() {
 
           {/* Right: Visual Element */}
           <div
-            className={`relative hidden lg:flex items-center justify-center transition-all duration-1000 delay-300 ${
+            className={`relative hidden lg:flex flex-1 items-center justify-center transition-all duration-1000 delay-300 ${
               mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
@@ -228,6 +229,7 @@ export default function Hero() {
             SCROLL DOWN
           </span>
           <ArrowDown className="w-3 h-3 text-slate-600 animate-bounce" />
+        </div>
         </div>
       </div>
     </section>
