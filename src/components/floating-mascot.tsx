@@ -77,7 +77,7 @@ export default function FloatingMascot() {
             <img
               src="/assets/mascot.png"
               alt="智能体小溯"
-              className="w-48 h-48 sm:w-56 sm:h-56 object-contain drop-shadow-[0_8px_24px_rgba(0,212,255,0.35)] select-none"
+              className="w-24 h-24 sm:w-28 sm:h-28 object-contain drop-shadow-[0_8px_24px_rgba(0,212,255,0.35)] select-none"
               draggable={false}
             />
 
