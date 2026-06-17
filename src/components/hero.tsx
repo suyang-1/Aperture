@@ -176,6 +176,49 @@ export default function Hero() {
                   </div>
                 </div>
               ))}
+
+              {/* Connecting lines (decorative) */}
+              <svg
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                viewBox="0 0 320 320"
+              >
+                <line
+                  x1="160"
+                  y1="160"
+                  x2="240"
+                  y2="40"
+                  stroke="rgba(0,212,255,0.1)"
+                  strokeWidth="1"
+                  strokeDasharray="4 4"
+                />
+                <line
+                  x1="160"
+                  y1="160"
+                  x2="280"
+                  y2="180"
+                  stroke="rgba(0,212,255,0.1)"
+                  strokeWidth="1"
+                  strokeDasharray="4 4"
+                />
+                <line
+                  x1="160"
+                  y1="160"
+                  x2="200"
+                  y2="260"
+                  stroke="rgba(0,212,255,0.1)"
+                  strokeWidth="1"
+                  strokeDasharray="4 4"
+                />
+                <line
+                  x1="160"
+                  y1="160"
+                  x2="60"
+                  y2="100"
+                  stroke="rgba(0,212,255,0.1)"
+                  strokeWidth="1"
+                  strokeDasharray="4 4"
+                />
+              </svg>
             </div>
           </div>
         </div>
