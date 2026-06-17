@@ -85,7 +85,7 @@ export default function SolarSystem() {
         </h1>
         <p className="mt-3 text-slate-300 text-xs sm:text-sm max-w-md drop-shadow-[0_0_12px_rgba(0,0,0,0.9)]">
           点击轨道上的<span className="text-cyan-300 font-semibold">地球</span>
-          ，启程探索智能交互与赛博安全的星河。
+          ，进入探索
         </p>
         <p className="mt-2 text-[10px] tracking-[0.2em] text-slate-500">
           PLANETS REVOLVE AT REAL ORBITAL PERIOD RATIO
