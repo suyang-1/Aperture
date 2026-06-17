@@ -21,16 +21,23 @@ ZHAO YI 个人作品集网站 - 全栈设计工程师个人展示页
 │   ├── app/                # 页面路由与布局
 │   │   ├── globals.css     # 全局样式（赛博暗黑主题）
 │   │   ├── layout.tsx      # 根布局（dark 模式）
-│   │   └── page.tsx        # 首页（组装所有 Section）
+│   │   ├── page.tsx        # 进入页（星河 + 太阳系，点击地球进入主站）
+│   │   └── portfolio/
+│   │       └── page.tsx    # 作品集主页（组装所有 Section）
 │   ├── components/         # 业务组件
 │   │   ├── ui/             # Shadcn UI 组件库
+│   │   ├── intro/
+│   │   │   └── solar-system.tsx # 进入页太阳系组件（可点击的地球）
+│   │   ├── effects/        # 动画/特效组件（流星、代码雨、粒子拖尾）
+│   │   ├── floating-mascot.tsx # 右下角浮动智能体
 │   │   ├── navbar.tsx      # 导航栏（固定顶部、毛玻璃效果）
 │   │   ├── hero.tsx        # 首屏区域（左文字+右科技视觉）
 │   │   ├── capabilities.tsx # 核心能力（4列卡片网格）
 │   │   ├── projects.tsx    # 项目展示（2x2卡片网格）
 │   │   ├── process.tsx     # 工作流程（6步骤+引用）
 │   │   ├── about.tsx       # 关于与联系（3列布局）
-│   │   ├── hobbies.tsx     # 兴趣爱好（篆刻与写字）
+│   │   ├── skills.tsx      # 专业技能与资格证书
+│   │   ├── hobbies.tsx     # 兴趣爱好（篆刻/写字/羽毛球/乒乓球）
 │   │   └── footer.tsx      # 页脚
 │   ├── hooks/              # 自定义 Hooks
 │   └── lib/                # 工具库
@@ -90,11 +97,13 @@ ZHAO YI 个人作品集网站 - 全栈设计工程师个人展示页
 
 | 修改内容 | 涉及文件 |
 |----------|----------|
+| 修改进入页（太阳系/地球点击） | `src/components/intro/solar-system.tsx` |
 | 修改个人信息 | `src/components/hero.tsx`, `src/components/about.tsx` |
 | 修改项目展示 | `src/components/projects.tsx` |
 | 修改能力列表 | `src/components/capabilities.tsx` |
 | 修改工作流程 | `src/components/process.tsx` |
 | 修改导航链接 | `src/components/navbar.tsx` |
 | 修改兴趣爱好 | `src/components/hobbies.tsx` |
+| 修改技能/证书 | `src/components/skills.tsx` |
 | 修改配色方案 | `src/app/globals.css` + `DESIGN.md` |
-| 添加新区域 | 创建新组件 + 在 `page.tsx` 中引入 |
+| 添加新区域 | 创建新组件 + 在 `src/app/portfolio/page.tsx` 中引入 |
