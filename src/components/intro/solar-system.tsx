@@ -4,6 +4,36 @@ import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { ChevronRight, MousePointerClick } from 'lucide-react';
 
+/**
+ * 八大行星按真实公转周期比例转动。
+ * 真实公转周期（地球年）：水 0.241 / 金 0.615 / 地 1 / 火 1.881 / 木 11.862 / 土 29.457 / 天 84.011 / 海 164.79
+ * 此处把 1 个地球年映射为 20 秒，其它行星等比例换算。
+ */
+const EARTH_YEAR_SECONDS = 20;
+
+interface Planet {
+  name: string;
+  label: string;
+  size: number;       // 行星直径 px
+  orbit: number;      // 轨道直径 px
+  yearsOnEarth: number; // 公转周期（地球年）
+  startAngle: number; // 起始角度（度，让行星散布在不同位置）
+  color: string;
+  isEarth?: boolean;
+  hasRing?: boolean;
+}
+
+const planets: Planet[] = [
+  { name: 'mercury',  label: '水星', size: 5,  orbit: 110, yearsOnEarth: 0.241,   startAngle: 30,  color: 'radial-gradient(circle at 30% 30%, #cbd5e1 0%, #6b7280 70%, #374151 100%)' },
+  { name: 'venus',    label: '金星', size: 8,  orbit: 160, yearsOnEarth: 0.615,   startAngle: 110, color: 'radial-gradient(circle at 30% 30%, #fde68a 0%, #f59e0b 60%, #92400e 100%)' },
+  { name: 'earth',    label: '地球', size: 11, orbit: 220, yearsOnEarth: 1.0,     startAngle: 200, color: 'radial-gradient(circle at 32% 28%, #67e8f9 0%, #06b6d4 25%, #0369a1 65%, #082f49 100%)', isEarth: true },
+  { name: 'mars',     label: '火星', size: 7,  orbit: 290, yearsOnEarth: 1.881,   startAngle: 320, color: 'radial-gradient(circle at 30% 30%, #fca5a5 0%, #dc2626 55%, #7f1d1d 100%)' },
+  { name: 'jupiter',  label: '木星', size: 22, orbit: 400, yearsOnEarth: 11.862,  startAngle: 60,  color: 'linear-gradient(180deg, #fde68a 0%, #f97316 30%, #b45309 65%, #78350f 100%)' },
+  { name: 'saturn',   label: '土星', size: 18, orbit: 500, yearsOnEarth: 29.457,  startAngle: 150, color: 'radial-gradient(circle at 30% 30%, #fef3c7 0%, #eab308 55%, #854d0e 100%)', hasRing: true },
+  { name: 'uranus',   label: '天王星', size: 13, orbit: 590, yearsOnEarth: 84.011, startAngle: 240, color: 'radial-gradient(circle at 35% 30%, #a7f3d0 0%, #22d3ee 55%, #0e7490 100%)' },
+  { name: 'neptune',  label: '海王星', size: 13, orbit: 680, yearsOnEarth: 164.79, startAngle: 320, color: 'radial-gradient(circle at 32% 30%, #93c5fd 0%, #2563eb 55%, #1e3a8a 100%)' },
+];
+
 export default function SolarSystem() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
@@ -27,25 +57,21 @@ export default function SolarSystem() {
         entering ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
       }`}
     >
-      {/* Galaxy reference image background */}
+      {/* Galaxy ambient image */}
       <div
         className="absolute inset-0 bg-center bg-cover bg-no-repeat"
-        style={{ backgroundImage: 'url(/assets/intro-galaxy.jpg)' }}
+        style={{ backgroundImage: 'url(/assets/intro-galaxy.jpg)', opacity: 0.55 }}
         aria-hidden
       />
-
-      {/* Top/bottom darkening for text legibility */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#04060d]/80 via-[#04060d]/10 to-[#04060d]/85 pointer-events-none" />
-      {/* Center vignette + cool tint */}
+      {/* Strong darken to push image to ambient role so foreground CSS solar system reads clearly */}
+      <div className="absolute inset-0 bg-[#04060d]/55 pointer-events-none" />
       <div className="absolute inset-0 bg-vignette pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,212,255,0.05)_0%,_transparent_60%)] pointer-events-none" />
-
-      {/* Twinkle stars overlay (subtle on top of image) */}
-      <div className="absolute inset-0 bg-stars opacity-30 pointer-events-none animate-star-twinkle" />
+      {/* Subtle twinkle stars */}
+      <div className="absolute inset-0 bg-stars opacity-40 pointer-events-none animate-star-twinkle" />
 
       {/* Top headline */}
       <div
-        className={`relative z-10 pt-16 sm:pt-24 px-6 flex flex-col items-center text-center transition-all duration-1000 ${
+        className={`relative z-10 pt-12 sm:pt-16 px-6 flex flex-col items-center text-center transition-all duration-1000 ${
           mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'
         }`}
       >
@@ -54,91 +80,162 @@ export default function SolarSystem() {
           SY · DIGITAL UNIVERSE
           <span className="w-6 h-px bg-cyber-blue/60" />
         </span>
-        <h1 className="mt-5 text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-wide leading-tight drop-shadow-[0_0_20px_rgba(0,0,0,0.8)]">
+        <h1 className="mt-4 text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-wide leading-tight drop-shadow-[0_0_20px_rgba(0,0,0,0.8)]">
           欢迎来到 <span className="text-glow text-cyber-blue">袁苏洋</span> 的数字宇宙
         </h1>
-        <p className="mt-4 text-slate-300 text-xs sm:text-sm max-w-md drop-shadow-[0_0_12px_rgba(0,0,0,0.9)]">
-          点击星河中的<span className="text-cyan-300 font-semibold">地球</span>
+        <p className="mt-3 text-slate-300 text-xs sm:text-sm max-w-md drop-shadow-[0_0_12px_rgba(0,0,0,0.9)]">
+          点击轨道上的<span className="text-cyan-300 font-semibold">地球</span>
           ，启程探索智能交互与赛博安全的星河。
+        </p>
+        <p className="mt-2 text-[10px] tracking-[0.2em] text-slate-500">
+          PLANETS REVOLVE AT REAL ORBITAL PERIOD RATIO
         </p>
       </div>
 
-      {/* Center: Clickable Earth */}
+      {/* Solar system stage */}
       <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-        <div
-          className={`relative pointer-events-auto transition-all duration-1000 ${
-            mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
-          }`}
-        >
-          {/* Outer dashed orbit ring (decorative) */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full border border-dashed border-cyan-400/25 animate-[orbit-spin_60s_linear_infinite]" />
-          {/* Mid solid orbit ring */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] rounded-full border border-cyan-400/20" />
-          {/* Inner glow ring */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] rounded-full bg-cyan-400/5 blur-2xl" />
-
-          {/* Pulse rings */}
-          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full border border-cyan-300/40 animate-ping" />
-          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full border border-cyan-300/60 animate-[ping_2.4s_ease-out_infinite]" />
-
-          {/* Hover label (top) */}
-          <span
-            className={`absolute left-1/2 -translate-x-1/2 -top-14 px-3 py-1 rounded-full bg-[#0d1117]/90 backdrop-blur-sm border border-cyan-400/50 text-[10px] tracking-[0.3em] text-cyan-200 whitespace-nowrap transition-all duration-300 ${
-              hoverEarth ? 'opacity-100 translate-y-0' : 'opacity-70 translate-y-1'
-            }`}
-            style={{ textShadow: '0 0 8px rgba(34,211,238,0.6)' }}
-          >
-            ★ EARTH · ENTER
-          </span>
-
-          {/* Earth button */}
-          <button
-            type="button"
-            onClick={handleEnter}
-            onMouseEnter={() => setHoverEarth(true)}
-            onMouseLeave={() => setHoverEarth(false)}
-            aria-label="点击地球进入主页"
-            className="relative block w-20 h-20 rounded-full cursor-pointer animate-earth-glow transition-transform duration-500 hover:scale-110 active:scale-95"
+        <div className="relative w-[720px] h-[720px] scale-[0.42] sm:scale-[0.6] lg:scale-[0.85] xl:scale-100">
+          {/* Sun */}
+          <div
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full pointer-events-none animate-pulse-slow"
             style={{
               background:
-                'radial-gradient(circle at 32% 28%, #67e8f9 0%, #06b6d4 22%, #0284c7 45%, #0369a1 70%, #082f49 100%)',
+                'radial-gradient(circle at 35% 35%, #fef9c3 0%, #fbbf24 30%, #ea580c 70%, #7f1d1d 100%)',
             }}
-          >
-            {/* Earth surface texture overlay (continents-ish) */}
-            <span
-              className="absolute inset-0 rounded-full opacity-70 mix-blend-overlay"
+          />
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 rounded-full bg-amber-400/20 blur-2xl pointer-events-none" />
+
+          {/* Static orbit rings */}
+          {planets.map((p) => (
+            <div
+              key={`orbit-${p.name}`}
+              className={`absolute left-1/2 top-1/2 rounded-full border border-dashed pointer-events-none ${
+                p.isEarth ? 'border-cyan-400/35' : 'border-cyber-blue/12'
+              }`}
               style={{
-                background:
-                  'radial-gradient(ellipse 22px 14px at 30% 40%, rgba(16,185,129,0.85) 0%, transparent 60%),' +
-                  'radial-gradient(ellipse 16px 22px at 65% 55%, rgba(16,185,129,0.7) 0%, transparent 65%),' +
-                  'radial-gradient(ellipse 12px 8px at 50% 75%, rgba(16,185,129,0.6) 0%, transparent 65%)',
+                width: `${p.orbit}px`,
+                height: `${p.orbit}px`,
+                marginLeft: `-${p.orbit / 2}px`,
+                marginTop: `-${p.orbit / 2}px`,
               }}
             />
-            {/* Atmosphere highlight */}
-            <span className="absolute inset-0 rounded-full bg-gradient-to-br from-white/30 via-transparent to-transparent" />
-            {/* Outer atmosphere ring */}
-            <span className="absolute -inset-1 rounded-full border border-cyan-300/30" />
-          </button>
+          ))}
 
-          {/* Below hint */}
-          <div
-            className={`absolute left-1/2 -translate-x-1/2 top-[calc(100%+1.25rem)] flex items-center gap-2 text-[10px] tracking-[0.3em] text-slate-400 whitespace-nowrap transition-opacity duration-300 ${
-              hoverEarth ? 'opacity-100' : 'opacity-60'
-            }`}
-          >
-            <MousePointerClick className="w-3 h-3 text-cyan-300" />
-            CLICK TO LAUNCH
-          </div>
+          {/* Rotating arms (one per planet) */}
+          {planets.map((p) => {
+            const duration = p.yearsOnEarth * EARTH_YEAR_SECONDS;
+            // CSS animation negative delay shifts the start position to startAngle
+            const delay = -((p.startAngle / 360) * duration);
+            return (
+              <div
+                key={`arm-${p.name}`}
+                className="absolute left-1/2 top-1/2 rounded-full pointer-events-none"
+                style={{
+                  width: `${p.orbit}px`,
+                  height: `${p.orbit}px`,
+                  marginLeft: `-${p.orbit / 2}px`,
+                  marginTop: `-${p.orbit / 2}px`,
+                  animation: `orbit-spin ${duration}s linear ${delay}s infinite`,
+                }}
+              >
+                <div
+                  className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2"
+                  style={{ width: `${p.size}px`, height: `${p.size}px` }}
+                >
+                  {/* Saturn ring */}
+                  {p.hasRing && (
+                    <span
+                      className="absolute left-1/2 top-1/2 rounded-full border-2 border-yellow-200/55 pointer-events-none"
+                      style={{
+                        width: `${p.size * 2.4}px`,
+                        height: `${Math.max(p.size * 0.55, 6)}px`,
+                        transform: 'translate(-50%, -50%) rotate(-22deg)',
+                      }}
+                    />
+                  )}
+
+                  {p.isEarth ? (
+                    <button
+                      type="button"
+                      onClick={handleEnter}
+                      onMouseEnter={() => setHoverEarth(true)}
+                      onMouseLeave={() => setHoverEarth(false)}
+                      aria-label="点击地球进入主页"
+                      className="relative block rounded-full pointer-events-auto cursor-pointer animate-earth-glow transition-transform duration-300 hover:scale-[1.6]"
+                      style={{
+                        width: `${p.size}px`,
+                        height: `${p.size}px`,
+                        background: p.color,
+                      }}
+                    >
+                      {/* atmosphere highlight */}
+                      <span className="absolute inset-0 rounded-full bg-gradient-to-br from-white/30 via-transparent to-transparent" />
+                      {/* pulse */}
+                      <span className="absolute inset-0 rounded-full border border-cyan-300/80 animate-ping" />
+                      {/* Hover label */}
+                      <span
+                        className={`absolute -top-7 left-1/2 -translate-x-1/2 px-2 py-0.5 rounded text-[9px] tracking-[0.25em] text-cyan-200 whitespace-nowrap bg-[#0d1117]/90 border border-cyan-400/50 transition-opacity duration-200 ${
+                          hoverEarth ? 'opacity-100' : 'opacity-0'
+                        }`}
+                      >
+                        ENTER →
+                      </span>
+                    </button>
+                  ) : (
+                    <div
+                      className="rounded-full"
+                      style={{
+                        width: `${p.size}px`,
+                        height: `${p.size}px`,
+                        background: p.color,
+                        boxShadow: '0 0 6px rgba(255,255,255,0.18)',
+                      }}
+                      aria-label={p.label}
+                    />
+                  )}
+                </div>
+              </div>
+            );
+          })}
+
+          {/* Earth orbit standing label (rides Earth's orbit) */}
+          {planets
+            .filter((p) => p.isEarth)
+            .map((p) => {
+              const duration = p.yearsOnEarth * EARTH_YEAR_SECONDS;
+              const delay = -((p.startAngle / 360) * duration);
+              return (
+                <div
+                  key={`label-${p.name}`}
+                  className="absolute left-1/2 top-1/2 rounded-full pointer-events-none"
+                  style={{
+                    width: `${p.orbit}px`,
+                    height: `${p.orbit}px`,
+                    marginLeft: `-${p.orbit / 2}px`,
+                    marginTop: `-${p.orbit / 2}px`,
+                    animation: `orbit-spin ${duration}s linear ${delay}s infinite`,
+                  }}
+                >
+                  <span
+                    className="absolute top-1/2 right-0 translate-x-[28px] -translate-y-1/2 text-[10px] tracking-[0.3em] text-cyan-300 whitespace-nowrap"
+                    style={{ textShadow: '0 0 8px rgba(34,211,238,0.6)' }}
+                  >
+                    ★ EARTH
+                  </span>
+                </div>
+              );
+            })}
         </div>
       </div>
 
-      {/* Bottom skip */}
+      {/* Bottom hint + skip */}
       <div
         className={`absolute bottom-8 left-0 right-0 z-10 flex flex-col items-center gap-3 transition-all duration-1000 delay-300 ${
           mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
         }`}
       >
-        <span className="text-[11px] tracking-[0.3em] text-slate-500">
+        <span className="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] text-slate-400">
+          <MousePointerClick className="w-3 h-3 text-cyan-300" />
           CLICK · EARTH · TO · ENTER
         </span>
         <button
