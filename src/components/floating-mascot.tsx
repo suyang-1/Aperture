@@ -101,8 +101,12 @@ export default function FloatingMascot() {
             let event = 'message';
             let data = '';
             for (const line of lines) {
-              if (line.startsWith('event:')) event = line.slice(6).trim();
-              else if (line.startsWith('data:')) data += line.slice(5).trim();
+              if (line.startsWith('event:')) {
+                event = line.slice(6).trim();
+              } else if (line.startsWith('data:')) {
+                // SSE spec: only strip a single leading space, preserve token internal whitespace
+                data += line.slice(5).replace(/^ /, '');
+              }
             }
             const payload = data.replace(/\\n/g, '\n');
             if (event === 'delta' && payload) {

@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronRight, MousePointerClick } from 'lucide-react';
 
 /**
@@ -40,15 +40,22 @@ export default function SolarSystem() {
   const [entering, setEntering] = useState(false);
   const [hoverEarth, setHoverEarth] = useState(false);
 
+  const enterTimerRef = useRef<number | null>(null);
+
   useEffect(() => {
     setMounted(true);
     router.prefetch('/portfolio');
+    return () => {
+      if (enterTimerRef.current !== null) {
+        window.clearTimeout(enterTimerRef.current);
+      }
+    };
   }, [router]);
 
   const handleEnter = useCallback(() => {
     if (entering) return;
     setEntering(true);
-    window.setTimeout(() => router.push('/portfolio'), 1100);
+    enterTimerRef.current = window.setTimeout(() => router.push('/portfolio'), 1100);
   }, [entering, router]);
 
   return (

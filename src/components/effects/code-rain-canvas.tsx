@@ -239,7 +239,7 @@ export default function CodeRainCanvas() {
     return () => {
       cancelAnimationFrame(animRef.current);
       window.removeEventListener('resize', resize);
-      targets.forEach(t => observer.unobserve(t));
+      observer.disconnect();
     };
   }, [perf]);
 
