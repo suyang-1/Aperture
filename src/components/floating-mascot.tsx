@@ -20,7 +20,6 @@ const INITIAL_GREETING =
 
 export default function FloatingMascot() {
   const [mounted, setMounted] = useState(false);
-  const [visible, setVisible] = useState(true);
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
@@ -158,12 +157,10 @@ export default function FloatingMascot() {
     setPending(false);
   }, []);
 
-  if (!visible) return null;
-
   return (
     <div
       className={`fixed bottom-6 right-6 z-40 transition-all duration-700 ease-out ${
-        mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'
       }`}
     >
       <div className="relative flex flex-col items-end gap-3">
@@ -321,19 +318,6 @@ export default function FloatingMascot() {
 
         {/* Mascot button */}
         <div className="relative group">
-          {/* Close badge */}
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              setVisible(false);
-            }}
-            aria-label="关闭智能体"
-            className="absolute -top-1 -right-1 z-10 flex h-5 w-5 items-center justify-center rounded-full border border-cyber-blue/40 bg-[#06080f] text-slate-400 opacity-0 transition-all duration-200 group-hover:opacity-100 hover:text-cyber-blue hover:border-cyber-blue"
-          >
-            <X className="w-3 h-3" />
-          </button>
-
           {/* Glow ring */}
           <span className="pointer-events-none absolute inset-0 rounded-full bg-cyber-blue/15 blur-2xl scale-90 group-hover:scale-110 transition-transform duration-500" />
 
