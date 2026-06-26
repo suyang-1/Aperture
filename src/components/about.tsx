@@ -63,7 +63,7 @@ interface CredentialDetail {
   highlights: string[];
   fileUrl?: string;
   fileType?: 'pdf' | 'image';
-  extraLinks?: { label: string; url: string }[];
+  extraLinks?: { label: string; url: string; type?: 'pdf' | 'image' }[];
 }
 
 const credentials: CredentialDetail[] = [
@@ -220,30 +220,20 @@ const credentials: CredentialDetail[] = [
     fileType: 'pdf',
   },
   {
-    id: 'fuxing-cup-attack',
-    name: '"复兴杯"第五届全国大学生网络安全精英赛·网络攻防赛道',
+    id: 'fuxing-cup',
+    name: '"复兴杯"第五届全国大学生网络安全精英赛·双赛道晋级',
     issuer: '国家网络空间安全人才培养基地',
     date: '2025年11月17日',
     highlights: [
-      '赛道：网络安全攻防赛道',
-      '成绩：初赛成绩优异，成功晋级复赛',
-      '证书编号：52527734164813',
+      '赛道一：网络安全攻防赛道（证书编号：52527734164813）',
+      '赛道二：人工智能应用与安全赛道（证书编号：56924141301584）',
+      '成绩：双赛道初赛成绩优异，均成功晋级复赛',
     ],
     fileUrl: '/assets/fuxing-cup-attack.png',
     fileType: 'image',
-  },
-  {
-    id: 'fuxing-cup-ai',
-    name: '"复兴杯"第五届全国大学生网络安全精英赛·人工智能应用与安全赛道',
-    issuer: '国家网络空间安全人才培养基地',
-    date: '2025年11月17日',
-    highlights: [
-      '赛道：人工智能应用与安全赛道',
-      '成绩：初赛成绩优异，成功晋级复赛',
-      '证书编号：56924141301584',
+    extraLinks: [
+      { label: '人工智能应用与安全赛道证书', url: '/assets/fuxing-cup-prelim.png', type: 'image' as const },
     ],
-    fileUrl: '/assets/fuxing-cup-prelim.png',
-    fileType: 'image',
   },
   {
     id: 'datawhale-spring-camp',
@@ -295,7 +285,7 @@ const eventCredentialMap: Record<string, string> = {
   '"知网杯"数字素养大赛双项三等奖': 'zhiwang-cup-team',
   '获全球AI攻防挑战赛AI守卫者称号': 'ai-defender',
   '获NVIDIA深度学习基础认证': 'nvidia-dl-cert',
-  '"复兴杯"网络安全精英赛晋级复赛': 'fuxing-cup-attack',
+  '"复兴杯"网络安全精英赛晋级复赛': 'fuxing-cup',
   '获Datawhale AI春训营结营证书': 'datawhale-spring-camp',
   '参加BoHack 2025天津黑客松': 'bohack-2025',
 };

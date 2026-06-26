@@ -706,13 +706,12 @@ export default function Projects() {
               特色项目
             </h2>
           </div>
-          <a
-            href="#"
-            className="hidden sm:flex items-center gap-2 text-xs tracking-wider text-slate-400 hover:text-cyber-blue transition-colors"
+          <span
+            className="hidden sm:flex items-center gap-2 text-xs tracking-wider text-slate-400 cursor-default"
           >
             VIEW ALL PROJECTS
             <ArrowUpRight className="w-3 h-3" />
-          </a>
+          </span>
         </div>
 
         {/* Project Cards */}

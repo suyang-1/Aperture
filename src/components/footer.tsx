@@ -1,3 +1,5 @@
+'use client';
+
 import { Github, Linkedin, Calendar } from 'lucide-react';
 
 export default function Footer() {
@@ -17,13 +19,14 @@ export default function Footer() {
 
           {/* Social Icons */}
           <div className="flex items-center gap-4">
-            <a
-              href="#"
+            <button
+              type="button"
               className="text-slate-600 hover:text-cyber-blue transition-colors"
               aria-label="LinkedIn"
+              onClick={(e) => e.preventDefault()}
             >
               <Linkedin className="w-4 h-4" />
-            </a>
+            </button>
             <a
               href="https://github.com/suyang-1"
               target="_blank"
@@ -34,13 +37,14 @@ export default function Footer() {
             >
               <Github className="w-4 h-4" />
             </a>
-            <a
-              href="#"
+            <button
+              type="button"
               className="text-slate-600 hover:text-cyber-blue transition-colors"
               aria-label="Calendar"
+              onClick={(e) => e.preventDefault()}
             >
               <Calendar className="w-4 h-4" />
-            </a>
+            </button>
           </div>
         </div>
       </div>

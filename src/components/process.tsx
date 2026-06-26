@@ -167,7 +167,7 @@ export default function Process() {
                 <div>
                   <p className="text-white text-xs font-semibold">YUAN SUYANG</p>
                   <p className="text-slate-600 text-[10px]">
-                    交互设计 & 信息安全
+                    智能交互设计 & 网络与信息安全
                   </p>
                 </div>
               </div>

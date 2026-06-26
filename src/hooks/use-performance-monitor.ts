@@ -58,9 +58,15 @@ export function usePerformanceMonitor(): React.MutableRefObject<PerformanceMonit
 }
 
 export function useVisibilityPause(callback: (visible: boolean) => void) {
+  const callbackRef = useRef(callback);
+
   useEffect(() => {
-    const handler = () => callback(!document.hidden);
+    callbackRef.current = callback;
+  });
+
+  useEffect(() => {
+    const handler = () => callbackRef.current(!document.hidden);
     document.addEventListener('visibilitychange', handler);
     return () => document.removeEventListener('visibilitychange', handler);
-  }, [callback]);
+  }, []);
 }
