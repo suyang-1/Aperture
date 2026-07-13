@@ -4,6 +4,7 @@ import { ArrowRight, ArrowDown } from 'lucide-react';
 import { useEffect, useState, useCallback } from 'react';
 import { useParallax } from '@/hooks/use-parallax';
 import MeteorCanvas from '@/components/effects/meteor-canvas';
+import logoImg from '@/assets/logo.png';
 
 const floatingCards = [
   { title: 'INTERACTION DESIGN', top: '8%', left: '60%', delay: '0s', depth: 0.3 },
@@ -152,7 +153,7 @@ export default function Hero() {
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/assets/logo.png"
+                  src={logoImg.src}
                   alt="影溯渊 logo"
                   className={`w-full h-full object-contain p-3 transition-transform duration-300 drop-shadow-[0_0_18px_rgba(0,212,255,0.45)] ${mascotHovered ? 'scale-110' : 'scale-100'}`}
                 />

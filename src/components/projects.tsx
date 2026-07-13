@@ -18,6 +18,20 @@ import {
 } from 'lucide-react';
 import { useMouseSpotlight } from '@/hooks/use-mouse-spotlight';
 
+/* ---------- Image / file imports ---------- */
+import patentAbstractImg from '@/assets/patent-abstract.png';
+import patentCertFile from '@/assets/patent-certificate.pdf';
+import patentDetailFile from '@/assets/patent-detail.pdf';
+import bohackPosterImg from '@/assets/bohack-poster.jpg';
+import bohackPptFile from '@/assets/bohack-ppt.pptx';
+import bohackVideoFile from '@/assets/bohack-demo-video.mp4';
+import bohackPhoto1Img from '@/assets/bohack-photo1.jpg';
+import bohackPhoto2Img from '@/assets/bohack-photo2.jpg';
+import ediofferHomeImg from '@/assets/edioffer-home.jpg';
+import ediofferIpImg from '@/assets/edioffer-ip.jpg';
+import ediofferLogoImg from '@/assets/edioffer-logo.png';
+import tencentCertImg from '@/assets/tencent-ai-hr-cert.png';
+
 /* ---------- Patent detail data ---------- */
 const patentInfo = {
   title: '一种配电柜柜体的焊接装置',
@@ -52,8 +66,8 @@ const patentInfo = {
   claims: '10项权利要求',
   specPages: '说明书5页',
   drawingPages: '附图12页',
-  certUrl: '/assets/patent-certificate.pdf',
-  fullTextUrl: '/assets/patent-detail.pdf',
+  certUrl: patentCertFile.src,
+  fullTextUrl: patentDetailFile.src,
 };
 
 /* ---------- Project data ---------- */
@@ -113,7 +127,7 @@ function PatentCard({ isVisible }: { isVisible: boolean }) {
       <div className="relative overflow-hidden">
         <div className="w-full bg-gradient-to-br from-blue-900/30 to-cyan-900/10">
           <img
-            src="/assets/patent-abstract.png"
+            src={patentAbstractImg.src}
             alt="一种配电柜柜体的焊接装置 - 专利摘要附图"
             className="w-full h-auto object-contain"
           />
@@ -341,11 +355,11 @@ const hackathonInfo = {
   venue: '天开高教科创园',
   organizers: ['天开高教科创园', '天津大学宣怀学院', '北洋海棠基金', '天津大学科技园', '创业知本社'],
   deliverable: '小程序设计与开发（48小时极限开发）',
-  posterUrl: '/assets/bohack-poster.jpg',
-  pptUrl: '/assets/bohack-ppt.pptx',
-  videoUrl: '/assets/bohack-demo-video.mp4',
-  photo1Url: '/assets/bohack-photo1.jpg',
-  photo2Url: '/assets/bohack-photo2.jpg',
+  posterUrl: bohackPosterImg.src,
+  pptUrl: bohackPptFile.src,
+  videoUrl: bohackVideoFile.src,
+  photo1Url: bohackPhoto1Img.src,
+  photo2Url: bohackPhoto2Img.src,
 };
 
 function HackathonCard({ isVisible }: { isVisible: boolean }) {
@@ -510,10 +524,10 @@ const ediofferInfo = {
     { icon: Cpu, label: '岗位匹配', desc: '智能匹配推荐，高效投递' },
     { icon: Shield, label: '模拟面试', desc: 'AI模拟面试，提升表现力' },
   ],
-  homeImg: '/assets/edioffer-home.jpg',
-  ipImg: '/assets/edioffer-ip.jpg',
-  logoImg: '/assets/edioffer-logo.png',
-  certImg: '/assets/tencent-ai-hr-cert.png',
+  homeImg: ediofferHomeImg.src,
+  ipImg: ediofferIpImg.src,
+  logoImg: ediofferLogoImg.src,
+  certImg: tencentCertImg.src,
   certNo: 'TCAMP20260707001068',
 };
 

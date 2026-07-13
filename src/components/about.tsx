@@ -34,6 +34,29 @@ import {
 } from '@/components/ui/dialog';
 import { useMouseSpotlight } from '@/hooks/use-mouse-spotlight';
 
+/* ---------- Image / file imports ---------- */
+import patentCertFile from '@/assets/patent-certificate.pdf';
+import patentDetailFile from '@/assets/patent-detail.pdf';
+import scholarshipCertImg from '@/assets/scholarship-certificate.jpg';
+import googleDigitalImg from '@/assets/google-digital-talent.jpg';
+import englishWritingImg from '@/assets/english-writing-2024.jpg';
+import serviceDesignImg from '@/assets/service-design-fest.png';
+import promptEngineerImg from '@/assets/prompt-engineer.png';
+import cozeCertImg from '@/assets/coze-cert.png';
+import zhiwangCupImg from '@/assets/zhiwang-cup-team.png';
+import aiDefenderImg from '@/assets/ai-defender-title.png';
+import nvidiaDlFile from '@/assets/nvidia-dl-cert.pdf';
+import fuxingAttackImg from '@/assets/fuxing-cup-attack.png';
+import fuxingPrelimImg from '@/assets/fuxing-cup-prelim.png';
+import datawhaleSpringImg from '@/assets/datawhale-spring-camp.png';
+import bohackPosterImg from '@/assets/bohack-poster.jpg';
+import bohackPptFile from '@/assets/bohack-ppt.pptx';
+import bohackVideoFile from '@/assets/bohack-demo-video.mp4';
+import bohackPhoto1Img from '@/assets/bohack-photo1.jpg';
+import bohackPhoto2Img from '@/assets/bohack-photo2.jpg';
+import wechatQrImg from '@/assets/wechat-qr.jpg';
+import wechatMpQrImg from '@/assets/wechat-mp-qr.jpg';
+
 const skills = [
   'Figma',
   'React',
@@ -90,10 +113,10 @@ const credentials: CredentialDetail[] = [
       '  3. 第一/第二磁块磁性吸附限位支撑，提高焊接精度与可调节性',
       '权利要求：10项，说明书5页，附图12页',
     ],
-    fileUrl: '/assets/patent-certificate.pdf',
+    fileUrl: patentCertFile.src,
     fileType: 'pdf',
     extraLinks: [
-      { label: '查看专利全文（含说明书附图）', url: '/assets/patent-detail.pdf' },
+      { label: '查看专利全文（含说明书附图）', url: patentDetailFile.src },
     ],
   },
   {
@@ -107,7 +130,7 @@ const credentials: CredentialDetail[] = [
       '等级：二等奖学金',
       '颁发机构：天津仁爱学院',
     ],
-    fileUrl: '/assets/scholarship-certificate.jpg',
+    fileUrl: scholarshipCertImg.src,
     fileType: 'image',
   },
   {
@@ -120,7 +143,7 @@ const credentials: CredentialDetail[] = [
       '以优秀成绩通过最终考核',
       '证书编号：G20240827006200',
     ],
-    fileUrl: '/assets/google-digital-talent.jpg',
+    fileUrl: googleDigitalImg.src,
     fileType: 'image',
   },
   {
@@ -133,7 +156,7 @@ const credentials: CredentialDetail[] = [
       '赛事：2024 Big Writing Event Under One Topic',
       '学校：天津仁爱学院',
     ],
-    fileUrl: '/assets/english-writing-2024.jpg',
+    fileUrl: englishWritingImg.src,
     fileType: 'image',
   },
   {
@@ -148,7 +171,7 @@ const credentials: CredentialDetail[] = [
       '指导老师：李春秋、梁芷贤、张寞轩、石丽雯',
       '证书编号：GSJ-YX-2025011',
     ],
-    fileUrl: '/assets/service-design-fest.png',
+    fileUrl: serviceDesignImg.src,
     fileType: 'image',
   },
   {
@@ -162,7 +185,7 @@ const credentials: CredentialDetail[] = [
       '证书编号：DWPE016547',
       '合作方：讯飞开放平台',
     ],
-    fileUrl: '/assets/prompt-engineer.png',
+    fileUrl: promptEngineerImg.src,
     fileType: 'image',
   },
   {
@@ -176,7 +199,7 @@ const credentials: CredentialDetail[] = [
       '具备使用AI Agent工具基本知识与能力',
       '证书编号：DW219-12060103',
     ],
-    fileUrl: '/assets/coze-cert.png',
+    fileUrl: cozeCertImg.src,
     fileType: 'image',
   },
   {
@@ -189,7 +212,7 @@ const credentials: CredentialDetail[] = [
       '作品：《基于多模态感知与边缘计算的复杂城市环境无人机自主避障研究现状报告》',
       '颁发机构：天津高等教育文献信息中心 / 天津理工大学图书馆',
     ],
-    fileUrl: '/assets/zhiwang-cup-team.png',
+    fileUrl: zhiwangCupImg.src,
     fileType: 'image',
   },
   {
@@ -202,7 +225,7 @@ const credentials: CredentialDetail[] = [
       '赛事：2025 Global AI Attacks and Defense Challenge · Jianzhen Season',
       '颁发机构：中国图象图形学学会 / 蚂蚁集团',
     ],
-    fileUrl: '/assets/ai-defender-title.png',
+    fileUrl: aiDefenderImg.src,
     fileType: 'image',
   },
   {
@@ -216,7 +239,7 @@ const credentials: CredentialDetail[] = [
       '认证ID：sL661SC9Rh6WmuY3jiJYpw',
       '签发人：Greg Estes, VP of NVIDIA',
     ],
-    fileUrl: '/assets/nvidia-dl-cert.pdf',
+    fileUrl: nvidiaDlFile.src,
     fileType: 'pdf',
   },
   {
@@ -229,10 +252,10 @@ const credentials: CredentialDetail[] = [
       '赛道二：人工智能应用与安全赛道（证书编号：56924141301584）',
       '成绩：双赛道初赛成绩优异，均成功晋级复赛',
     ],
-    fileUrl: '/assets/fuxing-cup-attack.png',
+    fileUrl: fuxingAttackImg.src,
     fileType: 'image',
     extraLinks: [
-      { label: '人工智能应用与安全赛道证书', url: '/assets/fuxing-cup-prelim.png', type: 'image' as const },
+      { label: '人工智能应用与安全赛道证书', url: fuxingPrelimImg.src, type: 'image' as const },
     ],
   },
   {
@@ -246,7 +269,7 @@ const credentials: CredentialDetail[] = [
       '完成全部学习，授予结营证书',
       '证书编号：DW306-12060655',
     ],
-    fileUrl: '/assets/datawhale-spring-camp.png',
+    fileUrl: datawhaleSpringImg.src,
     fileType: 'image',
   },
   {
@@ -262,13 +285,13 @@ const credentials: CredentialDetail[] = [
       '成果展示：路演PPT + 产品演示视频',
       '主办方：天开高教科创园 / 天津大学宣怀学院 / 北洋海棠基金 / 天津大学科技园 / 创业知本社',
     ],
-    fileUrl: '/assets/bohack-poster.jpg',
+    fileUrl: bohackPosterImg.src,
     fileType: 'image',
     extraLinks: [
-      { label: '查看路演PPT', url: '/assets/bohack-ppt.pptx' },
-      { label: '查看产品演示视频', url: '/assets/bohack-demo-video.mp4' },
-      { label: '查看活动照片-团队协作', url: '/assets/bohack-photo1.jpg' },
-      { label: '查看活动照片-路演现场', url: '/assets/bohack-photo2.jpg' },
+      { label: '查看路演PPT', url: bohackPptFile.src },
+      { label: '查看产品演示视频', url: bohackVideoFile.src },
+      { label: '查看活动照片-团队协作', url: bohackPhoto1Img.src },
+      { label: '查看活动照片-路演现场', url: bohackPhoto2Img.src },
     ],
   },
 ];
@@ -960,7 +983,7 @@ export default function About() {
               <div className="rounded-lg border border-cyber-blue-dim bg-[#0d1117] p-3 flex flex-col items-center gap-2 hover:border-cyber-blue/40 transition-colors">
                 <div className="w-full aspect-square rounded overflow-hidden bg-white">
                   <img
-                    src="/wechat-qr.jpg"
+                    src={wechatQrImg.src}
                     alt="微信二维码"
                     width={120}
                     height={120}
@@ -981,7 +1004,7 @@ export default function About() {
               <div className="rounded-lg border border-cyber-blue-dim bg-[#0d1117] p-3 flex flex-col items-center gap-2 hover:border-cyber-blue/40 transition-colors">
                 <div className="w-full aspect-square rounded overflow-hidden bg-white">
                   <img
-                    src="/assets/wechat-mp-qr.jpg"
+                    src={wechatMpQrImg.src}
                     alt="公众号二维码"
                     width={120}
                     height={120}

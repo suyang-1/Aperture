@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { X, Send, Sparkles, Trash2, Loader2 } from 'lucide-react';
+import mascotImg from '@/assets/mascot.png';
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -336,7 +337,7 @@ export default function FloatingMascot() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/assets/mascot.png"
+              src={mascotImg.src}
               alt="智能体小溯"
               className="w-24 h-24 sm:w-28 sm:h-28 object-contain drop-shadow-[0_8px_24px_rgba(0,212,255,0.35)] select-none"
               draggable={false}

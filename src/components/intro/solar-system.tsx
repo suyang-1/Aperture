@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronRight, MousePointerClick } from 'lucide-react';
+import galaxyImg from '@/assets/intro-galaxy.jpg';
 
 /**
  * 八大行星按真实公转周期比例转动。
@@ -67,7 +68,7 @@ export default function SolarSystem() {
       {/* Galaxy ambient image */}
       <div
         className="absolute inset-0 bg-center bg-cover bg-no-repeat"
-        style={{ backgroundImage: 'url(/assets/intro-galaxy.jpg)', opacity: 0.55 }}
+        style={{ backgroundImage: `url(${galaxyImg.src})`, opacity: 0.55 }}
         aria-hidden
       />
       {/* Strong darken to push image to ambient role so foreground CSS solar system reads clearly */}
