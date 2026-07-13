@@ -513,10 +513,13 @@ const ediofferInfo = {
   homeImg: '/assets/edioffer-home.jpg',
   ipImg: '/assets/edioffer-ip.jpg',
   logoImg: '/assets/edioffer-logo.png',
+  certImg: '/assets/tencent-ai-hr-cert.png',
+  certNo: 'TCAMP20260707001068',
 };
 
 function EdiofferCard({ isVisible }: { isVisible: boolean }) {
   const [expanded, setExpanded] = useState(false);
+  const [showCert, setShowCert] = useState(false);
   const { ref, onMouseMove, onMouseLeave, spotlightStyle } =
     useMouseSpotlight();
 
@@ -660,6 +663,47 @@ function EdiofferCard({ isVisible }: { isVisible: boolean }) {
             <p className="text-[10px] text-slate-500 mt-2 text-center">
               「OFFER捕手」— 鹅滴offer 品牌IP形象
             </p>
+          </div>
+        </div>
+
+        {/* Certificate toggle */}
+        <button
+          onClick={() => setShowCert(!showCert)}
+          className="flex items-center gap-1.5 text-[11px] text-cyber-blue/70 hover:text-cyber-blue transition-colors mt-3 ml-1"
+        >
+          <FileText className="w-3.5 h-3.5" />
+          <ChevronDown
+            className={`w-3.5 h-3.5 transition-transform duration-300 ${
+              showCert ? 'rotate-180' : ''
+            }`}
+          />
+          {showCert ? '收起证书' : '查看结课证书'}
+        </button>
+
+        {/* Expanded: Certificate */}
+        <div
+          className="overflow-hidden transition-all duration-500 ease-out"
+          style={{
+            maxHeight: showCert ? '800px' : '0px',
+            opacity: showCert ? 1 : 0,
+          }}
+        >
+          <div className="pt-3">
+            <div className="rounded-lg overflow-hidden bg-gradient-to-br from-amber-900/10 to-orange-900/5 border border-amber-500/15">
+              <img
+                src={ediofferInfo.certImg}
+                alt="腾讯AI-HR培训生线上实战营结课证书"
+                className="w-full h-auto object-contain max-h-[600px]"
+              />
+            </div>
+            <div className="flex items-center justify-between mt-2 px-1">
+              <p className="text-[10px] text-slate-500">
+                腾讯AI-HR培训生线上实战营 · 结课证书
+              </p>
+              <p className="text-[9px] text-slate-600 font-mono">
+                NO. {ediofferInfo.certNo}
+              </p>
+            </div>
           </div>
         </div>
       </div>
