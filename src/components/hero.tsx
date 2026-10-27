@@ -82,10 +82,10 @@ export default function Hero() {
 
             {/* Subtitle */}
             <p className="text-slate-400 text-sm sm:text-base leading-relaxed max-w-md">
-              袁苏洋 — 本科大三在读，智能交互设计专业 & 网络与信息安全微专业，持有发明专利一项。
+              袁苏洋 — 本科大四在读，智能交互设计专业 & 网络与信息安全微专业，持有发明专利一项。
               <br />
               <span className="text-slate-500 text-xs">
-                Undergraduate junior majoring in Intelligent Interaction Design & Network and Information Security, with one invention patent.
+                Undergraduate senior majoring in Intelligent Interaction Design & Network and Information Security, with one invention patent.
               </span>
             </p>
 

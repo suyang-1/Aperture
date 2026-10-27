@@ -527,9 +527,9 @@ const campusTimeline = [
         isCore: true,
       },
       {
-        title: '大创项目获国家级立项',
+        title: '获国家级大学生创新项目立项',
         description:
-          '5月 · 《智宠灵瑞——基于具身智能的适老化情感陪伴机器人》创新训练项目 · 为期一年',
+          '2026年5月 · 《智宠灵瑞——基于具身智能的适老化情感陪伴机器人》创新训练项目 · 为期一年',
         icon: Flame,
         isCore: true,
       },
@@ -729,12 +729,12 @@ export default function About() {
               <div>
                 <p className="text-white text-xs font-semibold">袁苏洋</p>
                 <p className="text-cyber-blue/60 text-[10px] mt-0.5">
-                  天津仁爱学院 · 大三在读 · 智能交互设计
+                  天津仁爱学院 · 大四在读 · 智能交互设计
                 </p>
               </div>
             </div>
             <p className="text-slate-300 text-xs leading-relaxed mb-3">
-              天津仁爱学院大三在读，主修智能交互设计专业，2025年加入网络与信息安全微专业。持有发明专利一项，获NVIDIA深度学习认证、Datawhale Prompt Engineer & AI Agent认证。担任创业实践协会社团主席及智交互产教融合创新实验室学生负责人。致力于将交互设计思维与信息安全意识相融合，探索安全可信的智能交互体验。
+              天津仁爱学院大四在读，主修智能交互设计专业，2025年加入网络与信息安全微专业。持有发明专利一项，获NVIDIA深度学习认证、Datawhale Prompt Engineer & AI Agent认证。担任创业实践协会社团主席及智交互产教融合创新实验室学生负责人。致力于将交互设计思维与信息安全意识相融合，探索安全可信的智能交互体验。
             </p>
 
             {/* Highlight badges */}
