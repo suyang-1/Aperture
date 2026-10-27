@@ -34,9 +34,7 @@ import {
 } from '@/components/ui/dialog';
 import { useMouseSpotlight } from '@/hooks/use-mouse-spotlight';
 
-/* ---------- Image / file imports ---------- */
-import patentCertFile from '@/assets/patent-certificate.pdf';
-import patentDetailFile from '@/assets/patent-detail.pdf';
+/* ---------- Image imports (from src/assets/) ---------- */
 import scholarshipCertImg from '@/assets/scholarship-certificate.jpg';
 import googleDigitalImg from '@/assets/google-digital-talent.jpg';
 import englishWritingImg from '@/assets/english-writing-2024.jpg';
@@ -45,16 +43,12 @@ import promptEngineerImg from '@/assets/prompt-engineer.png';
 import cozeCertImg from '@/assets/coze-cert.png';
 import zhiwangCupImg from '@/assets/zhiwang-cup-team.png';
 import aiDefenderImg from '@/assets/ai-defender-title.png';
-import nvidiaDlFile from '@/assets/nvidia-dl-cert.pdf';
 import fuxingAttackImg from '@/assets/fuxing-cup-attack.png';
 import fuxingPrelimImg from '@/assets/fuxing-cup-prelim.png';
 import datawhaleSpringImg from '@/assets/datawhale-spring-camp.png';
 import bohackPosterImg from '@/assets/bohack-poster.jpg';
-import bohackPptFile from '@/assets/bohack-ppt.pptx';
-import bohackVideoFile from '@/assets/bohack-demo-video.mp4';
 import bohackPhoto1Img from '@/assets/bohack-photo1.jpg';
 import bohackPhoto2Img from '@/assets/bohack-photo2.jpg';
-import wechatQrImg from '@/assets/wechat-qr.jpg';
 import wechatMpQrImg from '@/assets/wechat-mp-qr.jpg';
 
 const skills = [
@@ -113,10 +107,10 @@ const credentials: CredentialDetail[] = [
       '  3. 第一/第二磁块磁性吸附限位支撑，提高焊接精度与可调节性',
       '权利要求：10项，说明书5页，附图12页',
     ],
-    fileUrl: patentCertFile.src,
+    fileUrl: '/assets/patent-certificate.pdf',
     fileType: 'pdf',
     extraLinks: [
-      { label: '查看专利全文（含说明书附图）', url: patentDetailFile.src },
+      { label: '查看专利全文（含说明书附图）', url: '/assets/patent-detail.pdf' },
     ],
   },
   {
@@ -239,7 +233,7 @@ const credentials: CredentialDetail[] = [
       '认证ID：sL661SC9Rh6WmuY3jiJYpw',
       '签发人：Greg Estes, VP of NVIDIA',
     ],
-    fileUrl: nvidiaDlFile.src,
+    fileUrl: '/assets/nvidia-dl-cert.pdf',
     fileType: 'pdf',
   },
   {
@@ -288,8 +282,8 @@ const credentials: CredentialDetail[] = [
     fileUrl: bohackPosterImg.src,
     fileType: 'image',
     extraLinks: [
-      { label: '查看路演PPT', url: bohackPptFile.src },
-      { label: '查看产品演示视频', url: bohackVideoFile.src },
+      { label: '查看路演PPT', url: '/assets/bohack-ppt.pptx' },
+      { label: '查看产品演示视频', url: '/assets/bohack-demo-video.mp4' },
       { label: '查看活动照片-团队协作', url: bohackPhoto1Img.src },
       { label: '查看活动照片-路演现场', url: bohackPhoto2Img.src },
     ],
@@ -983,7 +977,7 @@ export default function About() {
               <div className="rounded-lg border border-cyber-blue-dim bg-[#0d1117] p-3 flex flex-col items-center gap-2 hover:border-cyber-blue/40 transition-colors">
                 <div className="w-full aspect-square rounded overflow-hidden bg-white">
                   <img
-                    src={wechatQrImg.src}
+                    src="/wechat-qr.jpg"
                     alt="微信二维码"
                     width={120}
                     height={120}

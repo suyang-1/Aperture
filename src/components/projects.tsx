@@ -18,19 +18,14 @@ import {
 } from 'lucide-react';
 import { useMouseSpotlight } from '@/hooks/use-mouse-spotlight';
 
-/* ---------- Image / file imports ---------- */
+/* ---------- Image imports (from src/assets/) ---------- */
 import patentAbstractImg from '@/assets/patent-abstract.png';
-import patentCertFile from '@/assets/patent-certificate.pdf';
-import patentDetailFile from '@/assets/patent-detail.pdf';
 import bohackPosterImg from '@/assets/bohack-poster.jpg';
-import bohackPptFile from '@/assets/bohack-ppt.pptx';
-import bohackVideoFile from '@/assets/bohack-demo-video.mp4';
 import bohackPhoto1Img from '@/assets/bohack-photo1.jpg';
 import bohackPhoto2Img from '@/assets/bohack-photo2.jpg';
 import ediofferHomeImg from '@/assets/edioffer-home.jpg';
 import ediofferIpImg from '@/assets/edioffer-ip.jpg';
 import ediofferLogoImg from '@/assets/edioffer-logo.png';
-import tencentCertImg from '@/assets/tencent-ai-hr-cert.png';
 
 /* ---------- Patent detail data ---------- */
 const patentInfo = {
@@ -66,8 +61,8 @@ const patentInfo = {
   claims: '10项权利要求',
   specPages: '说明书5页',
   drawingPages: '附图12页',
-  certUrl: patentCertFile.src,
-  fullTextUrl: patentDetailFile.src,
+  certUrl: '/assets/patent-certificate.pdf',
+  fullTextUrl: '/assets/patent-detail.pdf',
 };
 
 /* ---------- Project data ---------- */
@@ -356,8 +351,8 @@ const hackathonInfo = {
   organizers: ['天开高教科创园', '天津大学宣怀学院', '北洋海棠基金', '天津大学科技园', '创业知本社'],
   deliverable: '小程序设计与开发（48小时极限开发）',
   posterUrl: bohackPosterImg.src,
-  pptUrl: bohackPptFile.src,
-  videoUrl: bohackVideoFile.src,
+  pptUrl: '/assets/bohack-ppt.pptx',
+  videoUrl: '/assets/bohack-demo-video.mp4',
   photo1Url: bohackPhoto1Img.src,
   photo2Url: bohackPhoto2Img.src,
 };
@@ -527,7 +522,7 @@ const ediofferInfo = {
   homeImg: ediofferHomeImg.src,
   ipImg: ediofferIpImg.src,
   logoImg: ediofferLogoImg.src,
-  certImg: tencentCertImg.src,
+  certImg: '/assets/tencent-ai-hr-cert.png',
   certNo: 'TCAMP20260707001068',
 };
 
